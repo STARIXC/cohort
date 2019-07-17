@@ -32,7 +32,6 @@
         <servlet-name>loadyear</servlet-name>
         <url-pattern>/loadyear</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>getCohortMonths</servlet-name>
         <servlet-class>data.getCohortMonths</servlet-class>
@@ -49,6 +48,15 @@
         <servlet-name>loadSavedCohort</servlet-name>
         <url-pattern>/loadSavedCohort</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>loadSavedCohort2</servlet-name>
+        <servlet-class>data.loadSavedCohort2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loadSavedCohort2</servlet-name>
+        <url-pattern>/loadSavedCohort2</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>data.login</servlet-class>

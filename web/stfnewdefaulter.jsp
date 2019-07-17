@@ -141,7 +141,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();loadcohorts();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
+                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
 
                                                         <% if (session.getAttribute("ct") != null) {
                                                                 if (session.getAttribute("ct").equals("stf")) {
@@ -166,7 +166,7 @@
 
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                    <select required="true" onclick="getmonth();cohortmonths();loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
+                                                    <select required="true" onclick="getmonth();cohortmonths();isdisplayindicators();"   name="year" id="year" class="form-control" >
                                                         <option value=''>Select Year</option>
                                                         <%
 
@@ -233,7 +233,7 @@
 
                                                 <div class="form-group">
                                                     <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                    <select required="true"  onchange="loadcohorts();isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
+                                                    <select required="true"  onchange="isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
                                                         <option>Select Facility Name</option>
 
                                                     </select>
@@ -478,14 +478,89 @@
     <script src="js/datepicker.js"></script>
     <script>
                                                                 $(document).ready(function () {
-                                                                    $("#nav-pills .nav-item").on("click", function () {
-                                                                        var cm = $('.nav-item').data('cohortmonth');
+                                                                    /** $("#nav-pills .nav-item").on("click", function () {
+                                                                     var cm = $('.nav-item').data('cohortmonth');
+                                                                     console.log("you have clicked me :" + cm);
+                                                                     //loadcohorts();
+                                                                     hiddenelements();
+                                                                     isdisplayindicators();
+                                                                     });
+                                                                     
+                                                                    $("#nav-pills .nav-item").mouseup(function () {
+                                                                        function loadcohorts(){
+                                                                        var cm = $(this).data('cohortmonth');
+                                                                        var yr = $("#year").val();
+                                                                        var mn = $("#month").val();
+                                                                        var ct = $("#cohortttype").val();
+                                                                        var fc = $("#facilityname").val();
+                                                                        //var cm = $("#cohortmonth").val();
                                                                         console.log("you have clicked me :" + cm);
-                                                                        loadcohorts();
-                                                                        hiddenelements();
-                                                                        isdisplayindicators();
-                                                                    });
-                                                                });
+                                                                        if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
+                                                                            clearfields('12');
+                                                                            $.ajax({
+                                                                                url: 'loadSavedCohort?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
+                                                                                type: 'post',
+                                                                                dataType: 'json',
+                                                                                success: function (data) {
+
+                                                                                    //alert(data.length);
+                                                                                    var a = 1;
+                                                                                    //display the values first
+                                                                                    for (a = 1; a <= data.length; a++) {
+
+                                                                                        //                        
+                                                                                        if (ct === 'stf') {
+                                                                                            if (data[a - 1].val1 !== '') {
+                                                                                                $("#" + a + "_adult").val(data[a - 1].val1);
+                                                                                                $("#" + a + "_child").val(data[a - 1].val2);
+                                                                                                $("#" + a + "_tl").val(data[a - 1].val3);
+                                                                                                $("#" + a + "_adult").blur();
+                                                                                                $("#" + a + "_child").blur();
+                                                                                            }
+                                                                                        }
+                                                                                        if (ct === 'defaulter') {
+                                                                                            if (data[a - 1].val1 !== '') {
+                                                                                                $("#" + a + "_kp").val(data[a - 1].val1);
+                                                                                                $("#" + a + "_np").val(data[a - 1].val2);
+                                                                                                $("#" + a + "_tl").val(data[a - 1].val3);
+                                                                                                $("#" + a + "_kp").blur();
+                                                                                                $("#" + a + "_np").blur();
+                                                                                            }
+
+                                                                                        }//end of ifs
+                                                                                    }
+
+
+
+                                                                                    //=============blur===============
+                                                                                    for (a = 1; a <= data.length; a++) {
+
+                                                                                        //                        
+                                                                                        if (ct === 'stf') {
+                                                                                            // if(data[a-1].val1!==''){                           
+                                                                                            $("#" + a + "_adult").blur();
+                                                                                            $("#" + a + "_child").blur();
+                                                                                            //}
+                                                                                        }
+                                                                                        if (ct === 'defaulter') {
+                                                                                            // if(data[a-1].val1!==''){                           
+                                                                                            $("#" + a + "_kp").blur();
+                                                                                            $("#" + a + "_np").blur();
+                                                                                            // }
+
+                                                                                        }//end of ifs
+                                                                                    }
+
+
+                                                                                }
+                                                                            });
+
+                                                                        }
+                                                                    }});**/
+                                                               
+                                                            });
+                                                            
+                                                            
     </script>
 </body>
 </html>

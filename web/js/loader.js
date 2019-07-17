@@ -634,14 +634,17 @@ function getFacilitiesJson() {
                 var mn = $("#month").val();
                 var ct = $("#cohortttype").val();
                 var fc = $("#facilityname").val();
-                var cm = $("#cohortmonth").val();
-
-
+                var cm = $(".nav-tabs .nav-item > a.nav-link > span.hidden_id").data("mn");
+               // var x = document.getElementsByClassName("hid_id");
+               // var cm = $(".hidden_id").data('mn');
+                //elements[0].value;
+                
+                console.log(cm);
 
                 if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
                     clearfields('12');
                     $.ajax({
-                        url: 'loadSavedCohort?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
+                        url: 'loadSavedCohort2?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
                         type: 'post',
                         dataType: 'json',
                         success: function (data) {

@@ -721,12 +721,13 @@ function getFacilitiesJson() {
             
             function loadcohorts() {
                 //var cm = $(".active").data('mn');
+                var cm = $(this).data('cohortmonth');
                 var yr = $("#year").val();
                 var mn = $("#month").val();
                 var ct = $("#cohortttype").val();
                 var fc = $("#facilityname").val();
-                var cm = $("#cohortmonth").val();
-
+                //var cm = $("#cohortmonth").val();
+console.log("you have clicked me :" + cm);
                 if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
                     clearfields('12');
                     $.ajax({

@@ -484,11 +484,11 @@
     <script src="js/datepicker.js"></script>
     <script>
 $(document).ready(function(){
-  $("#nav-pills .nav-item a").on("click", function(){
+  /**$("#nav-pills .nav-item a").on("click", function(){
       var cm=$('#cohortmonth').val();
    console.log("you have clicked me :"+cm);
    loadcohorts();hiddenelements();isdisplayindicators();
-  });
+  });**/
 });
 </script>
 </body>
