@@ -112,14 +112,14 @@
         </div>
 
 
-        <div class="my-1 mb-5 p-1 bg-white rounded box-shadow">
+        <div class="my-1 mb-5 p-2 bg-white rounded box-shadow">
             <section id="tabs" class="project-tab">
                 <div class="container1">
                     <div class="row">
 
                         <div class="col-md-12">
                             <nav>
-                                <ul class="nav tabs" id="nav-pills">
+                                <ul class="nav nav-pills nav-fill" id="nav-pills">
 
                                 </ul>
                             </nav>
