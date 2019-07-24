@@ -1,42 +1,42 @@
 
-function numbers(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    return true;
-}
-function sumofindicators(sourceindicators, destinationindicator) {
-    var sourceindicatorsarray = sourceindicators.split("@");
+ function numbers(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            }
+    function sumofindicators(sourceindicators, destinationindicator) {
+                var sourceindicatorsarray = sourceindicators.split("@");
 
 
-    var destinationelement = destinationindicator;
-    var total = 0;
-    for (b = 0; b < sourceindicatorsarray.length; b++) {
-        //check if there
-        var indiic = sourceindicatorsarray[b].replace("_minus_", "");
-        var originalindic = sourceindicatorsarray[b];
+                var destinationelement = destinationindicator;
+                var total = 0;
+                for (b = 0; b < sourceindicatorsarray.length; b++) {
+                    //check if there
+                    var indiic = sourceindicatorsarray[b].replace("_minus_", "");
+                    var originalindic = sourceindicatorsarray[b];
 
 
-        if ($("#" + indiic).val() !== '') {
-            //remove negative
-            //if(originalindic.indexOf("_minus_") >==0){
-            if (originalindic.indexOf("_minus_") >= 0) {
-                //has negative 
-                total = parseInt(total) - parseInt($("#" + indiic).val());
-            } else {
+                    if ($("#" + indiic).val() !== '') {
+                        //remove negative
+                        //if(originalindic.indexOf("_minus_") >==0){
+                        if (originalindic.indexOf("_minus_") >= 0) {
+                            //has negative 
+                            total = parseInt(total) - parseInt($("#" + indiic).val());
+                        } else {
 
-                total = parseInt(total) + parseInt($("#" + indiic).val());
+                            total = parseInt(total) + parseInt($("#" + indiic).val());
+
+                        }
+
+                        $("#" + destinationelement).val(total);
+                    }
+
+                }
+
+
 
             }
-
-            $("#" + destinationelement).val(total);
-        }
-
-    }
-
-
-
-}
 
 
 
@@ -189,27 +189,27 @@ function createdynamicinputs() {
 
 }
 
-createdynamicinputs();
+ createdynamicinputs();
 
 
-function getmonth() {
+            function getmonth() {
 
 
 
-    var year = $("#year").val();
+                var year = $("#year").val();
 
-    $.ajax({
-        url: 'loadmonth?yr=' + year,
-        type: 'post',
-        dataType: 'html',
-        success: function (mwezi) {
+                $.ajax({
+                    url: 'loadmonth?yr=' + year,
+                    type: 'post',
+                    dataType: 'html',
+                    success: function (mwezi) {
 
-            $("#month").html(mwezi);
-            cohortmonths();
-        }
-    });
-}
-
+                        $("#month").html(mwezi);
+                        cohortmonths();
+                    }
+                });
+            }
+                
 function getFacilitiesJson() {
 
     var ct = $("#cohortttype").val();
@@ -229,494 +229,76 @@ function getFacilitiesJson() {
 
 //load731
 /**function load731() {
- var yr = $("#year").val();
- var mn = $("#month").val();
- var ct = $("#cohortttype").val();
- var fc = $("#facilityname").val();
- var cm = $("#cohortmonth").val();
- 
- if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
- 
- clearfields('1');
- 
- $.ajax({
- url: 'enrolledFromImis?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
- type: 'post',
- dataType: 'json',
- success: function (data) {
- 
- 
- if (ct === 'art') {
- if (1 === 2) {
- $("#1_adult").val(data.val1);
- $("#1_child").val(data.val2);
- $("#1_tl").val(data.tl);
- 
- if (data.val1 !== '') {
- $("#1_adult").prop("readonly", true);
- } else {
- $("#1_adult").prop("readonly", false);
- 
- }
- if (data.val2 !== '') {
- $("#1_child").prop("readonly", true);
- } else {
- $("#1_child").prop("readonly", false);
- 
- }
- if (data.tl !== '') {
- $("#1_tl").prop("readonly", true);
- } else {
- $("#1_tl").prop("readonly", false);
- 
- }
- }
- } else {
- //disabled from fetching data from moh731 for PMTCT
- if (1 === 2) {
- $("#1_kp").val(data.val1);
- $("#1_np").val(data.val2);
- $("#1_tl").val(data.tl);
- 
- if (data.val1 !== '') {
- $("#1_kp").prop("readonly", true);
- } else {
- $("#1_kp").prop("readonly", false);
- 
- }
- if (data.val2 !== '') {
- $("#1_np").prop("readonly", true);
- } else {
- 
- $("#1_np").prop("readonly", false);
- }
- if (data.tl !== '') {
- $("#1_tl").prop("readonly", true);
- } else {
- $("#1_tl").prop("readonly", false);
- 
- }
- 
- }
- }
- 
- }
- });
- 
- }
- 
- 
- }**/
-//cohortmonths
-
-function cohortmonths() {
-
-    var year = $("#year").val();
-    var month = $("#month").val();
-    var cohorttype = $("#cohortttype").val();
-    $.ajax({
-        url: 'getCohortMonths?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
-        type: 'post',
-        dataType: 'html',
-        success: function (data) {
-
-            $("#nav-pills").html(data);
-
-        }
-    });
-}
-cohortmonths();
-
-
-function clearfields(indics) {
-
-    var ct = $("#cohortttype").val();
-
-    for (a = 1; a <= indics; a++) {
-
-        //                        
-        if (ct === 'art') {
-
-            $("#" + a + "_adult").val("");
-            $("#" + a + "_child").val("");
-            $("#" + a + "_tl").val("");
-
-        }
-        if (ct === 'pmtct') {
-
-            $("#" + a + "_kp").val("");
-            $("#" + a + "_np").val("");
-            $("#" + a + "_tl").val("");
-
-        }
-
-    }
-
-}
-//load the other elements
-
-//a function to disable or enable hidden elements
-
-function hiddenelements() {
-    //var cm_ = $("#cohortmonth").val();
-    var ref_this = $("ul.nav-tabs li.nav-item a.active");
-    if (ref_this) {
-        var cm_= ref_this.data("mn");
-        console.log(cm_);
-    }
-    
-        else{
-                console.log('Cohort Month Not Selected !!!');
-    }
-   
-    var ct_ = $("#cohortttype").val();
-
-    if (cm_ === '3m' && ct_ === 'pmtct') {
-
-        $("#6_kp").attr("readonly", true);
-        $("#6_np").attr("readonly", true);
-
-
-        //tab index
-        $("#6_kp").attr("tabindex", -1);
-        $("#6_np").attr("tabindex", -1);
-        //$("#6_tl").attr("readonly",true);
-        $("#10_np").attr("readonly", true);
-        $("#11_np").attr("readonly", true);
-
-        //tab index
-        $("#10_np").attr("tabindex", -1);
-        $("#11_np").attr("tabindex", -1);
-
-        //remove the required attribute
-        $("#6_kp").removeAttr("required");
-        $("#6_np").removeAttr("required");
-        //$("#6_tl").removeAttr("required");
-        $("#10_np").removeAttr("required");
-        $("#11_np").removeAttr("required");
-
-        // set disabled elements to 0
-
-        $("#6_np").val("0");
-        $("#6_kp").val("0");
-        $("#6_tl").val("0");
-        $("#10_np").val("0");
-        $("#11_np").val("0");
-
-    } else if (cm_ === '6m' && ct_ === 'pmtct')
-    {
-
-        $("#10_kp").attr("readonly", true);
-        $("#10_np").attr("readonly", true);
-
-        //tabindex
-        $("#10_kp").attr("tabindex", -1);
-        $("#10_np").attr("tabindex", -1);
-        //$("#10_tl").attr("readonly",true);
-
-        $("#11_kp").attr("readonly", true);
-        $("#11_np").attr("readonly", true);
-        // $("#11_tl").attr("readonly",true);
-
-        //tabindex
-        $("#11_kp").attr("tabindex", -1);
-        $("#11_np").attr("tabindex", -1);
-
-        $("#10_kp").removeAttr("required");
-        $("#10_np").removeAttr("required");
-        // $("#10_tl").removeAttr("required");
-
-        $("#11_kp").removeAttr("required");
-        $("#11_np").removeAttr("required");
-        //  $("#11_tl").removeAttr("required");     
-        //========
-        $("#10_np").val("0");
-        $("#11_np").val("0");
-
-
-    } else if (cm_ === '6m' && ct_ === 'art')
-    {
-
-        $("#10_child").attr("readonly", true);
-        $("#10_adult").attr("readonly", true);
-
-        //tabindex
-        $("#10_child").attr("tabindex", -1);
-        $("#10_adult").attr("tabindex", -1);
-        //$("#10_tl").attr("readonly",true);
-
-        $("#11_child").attr("readonly", true);
-        $("#11_adult").attr("readonly", true);
-        // $("#11_tl").attr("readonly",true);
-
-        //tabindex
-        $("#11_child").attr("tabindex", -1);
-        $("#11_adult").attr("tabindex", -1);
-
-        $("#10_adult").removeAttr("required");
-        $("#10_adult").removeAttr("required");
-        // $("#10_tl").removeAttr("required");
-
-        $("#11_child").removeAttr("required");
-        $("#11_adult").removeAttr("required");
-        //$("#11_tl").removeAttr("required");     
-        //========
-        $("#10_child").val("0");
-        $("#11_adult").val("0");
-
-
-    } else if (cm_ === '3m' && ct_ === 'art') {
-
-
-        $("#6_child").attr("readonly", true);
-        $("#6_adult").attr("readonly", true);
-
-
-        $("#10_child").attr("readonly", true);
-        $("#10_adult").attr("readonly", true);
-
-        $("#11_child").attr("readonly", true);
-        $("#11_adult").attr("readonly", true);
-
-
-        //tab index
-        $("#6_child").attr("tabindex", -1);
-        $("#6_adult").attr("tabindex", -1);
-
-        $("#10_child").attr("tabindex", -1);
-        $("#10_adult").attr("tabindex", -1);
-
-        $("#11_child").attr("tabindex", -1);
-        $("#11_adult").attr("tabindex", -1);
-
-        //$("#6_tl").attr("readonly",true);
-
-        //tab index      
-
-        //remove the required attribute
-        $("#6_adult").removeAttr("required");
-        $("#6_child").removeAttr("required");
-
-        $("#10_adult").removeAttr("required");
-        $("#10_child").removeAttr("required");
-
-        $("#11_adult").removeAttr("required");
-        $("#11_child").removeAttr("required");
-        //$("#6_tl").removeAttr("required");
-
-
-        // set disabled elements to 0
-
-        $("#6_adult").val("0");
-        $("#6_child").val("0");
-        $("#6_tl").val("0");
-
-
-        $("#10_adult").val("0");
-        $("#10_child").val("0");
-        $("#10_tl").val("0");
-
-        $("#11_adult").val("0");
-        $("#11_child").val("0");
-        $("#11_tl").val("0");
-
-
-
-    } else {
-
-        if (ct_ === 'pmtct') {
-
-            $("#10_kp").removeAttr("readonly");
-            $("#10_np").removeAttr("readonly");
-
-            $("#10_kp").removeAttr("tabindex");
-            $("#10_np").removeAttr("tabindex");
-            //  $("#10_tl").removeAttr("readonly");
-
-            $("#11_kp").removeAttr("readonly");
-            $("#11_np").removeAttr("readonly");
-
-            $("#11_kp").removeAttr("tabindex");
-            $("#11_np").removeAttr("tabindex");
-            // $("#11_tl").removeAttr("readonly");
-
-            $("#6_kp").removeAttr("readonly");
-            $("#6_np").removeAttr("readonly");
-
-            $("#6_kp").removeAttr("tabindex");
-            $("#6_np").removeAttr("tabindex");
-            //   $("#6_tl").removeAttr("readonly");
-
-
-            $("#10_kp").attr("required", true);
-            $("#10_np").attr("required", true);
-            //   $("#10_tl").attr("required",true);
-
-            $("#11_kp").attr("required", true);
-            $("#11_np").attr("required", true);
-            //   $("#11_tl").attr("required",true);
-
-            $("#6_kp").attr("required", true);
-            $("#6_np").attr("required", true);
-            //  $("#6_tl").attr("required",true);
-
-
-        } else {
-
-
-            $("#10_adult").removeAttr("readonly");
-            $("#10_child").removeAttr("readonly");
-
-            $("#10_adult").removeAttr("tabindex");
-            $("#10_child").removeAttr("tabindex");
-            //  $("#10_tl").removeAttr("readonly");
-
-            $("#11_adult").removeAttr("readonly");
-            $("#11_child").removeAttr("readonly");
-
-            $("#11_adult").removeAttr("tabindex");
-            $("#11_child").removeAttr("tabindex");
-            // $("#11_tl").removeAttr("readonly");
-
-            $("#6_adult").removeAttr("readonly");
-            $("#6_child").removeAttr("readonly");
-
-            $("#6_adult").removeAttr("tabindex");
-            $("#6_child").removeAttr("tabindex");
-            //   $("#6_tl").removeAttr("readonly");
-
-
-            $("#10_adult").attr("required", true);
-            $("#10_child").attr("required", true);
-            //   $("#10_tl").attr("required",true);
-
-            $("#11_adult").attr("required", true);
-            $("#11_child").attr("required", true);
-            //   $("#11_tl").attr("required",true);
-
-            $("#6_adult").attr("required", true);
-            $("#6_child").attr("required", true);
-            //  $("#6_tl").attr("required",true);
-
-
-        }
-
-    }
-
-
-
-}
-
-
-function isdisplayindicators()
-{
-    var yr = $("#year").val();
-    var mn = $("#month").val();
-   // var cm = $("#cohortmonth").val();
-    var ref_this = $("ul.nav-tabs li.nav-item a.active span.hidden_id");
-    if (ref_this) {
-        var cm = ref_this.data("mn");
-        console.log(cm);
-    }
-    
-        else{
-                console.log('Cohort Month Not Selected !!!');
-    }
-    var fc = $("#facilityname").val();
-
-    if (yr !== '' && mn !== '' && cm !== '' && fc !== '' && fc !== 'Select Facility')
-    {
-        // display facility name
-        $("#dynamicindicators-3m").show();
-        $("#dynamicindicators-6m").show();
-        $("#dynamicindicators-12m").show();
-        $("#dynamicindicators-24m").show();
-        $("#dynamicindicators-36m").show();
-    } else
-    {
-        $("#dynamicindicators-3m").hide();
-        $("#dynamicindicators-6m").hide();
-        $("#dynamicindicators-12m").hide();
-        $("#dynamicindicators-24m").hide();
-        $("#dynamicindicators-36m").hide();
-        //        
-    }
-
-
-}
-
-function loadcohorts() {
-
     var yr = $("#year").val();
     var mn = $("#month").val();
     var ct = $("#cohortttype").val();
     var fc = $("#facilityname").val();
-    var ref_this = $("ul.nav-tabs li.nav-item a.active");
-    if (ref_this) {
-        var cm = ref_this.data("mn");
-        console.log(cm);
-    }
-    
-        else{
-                console.log('Cohort Month Not Selected !!!');
-    }
+    var cm = $("#cohortmonth").val();
 
     if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
-        clearfields('12');
+
+        clearfields('1');
+
         $.ajax({
-            url: 'loadSavedCohort2?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
+            url: 'enrolledFromImis?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
             type: 'post',
             dataType: 'json',
             success: function (data) {
 
-                //alert(data.length);
-                var a = 1;
-                //display the values first
-                for (a = 1; a <= data.length; a++) {
 
-                    //                        
-                    if (ct === 'art') {
-                        if (data[a - 1].val1 !== '') {
-                            $("#" + a + "_adult").val(data[a - 1].val1);
-                            $("#" + a + "_child").val(data[a - 1].val2);
-                            $("#" + a + "_tl").val(data[a - 1].val3);
-                            $("#" + a + "_adult").blur();
-                            $("#" + a + "_child").blur();
+                if (ct === 'art') {
+                    if (1 === 2) {
+                        $("#1_adult").val(data.val1);
+                        $("#1_child").val(data.val2);
+                        $("#1_tl").val(data.tl);
+
+                        if (data.val1 !== '') {
+                            $("#1_adult").prop("readonly", true);
+                        } else {
+                            $("#1_adult").prop("readonly", false);
+
+                        }
+                        if (data.val2 !== '') {
+                            $("#1_child").prop("readonly", true);
+                        } else {
+                            $("#1_child").prop("readonly", false);
+
+                        }
+                        if (data.tl !== '') {
+                            $("#1_tl").prop("readonly", true);
+                        } else {
+                            $("#1_tl").prop("readonly", false);
+
                         }
                     }
-                    if (ct === 'pmtct') {
-                        if (data[a - 1].val1 !== '') {
-                            $("#" + a + "_kp").val(data[a - 1].val1);
-                            $("#" + a + "_np").val(data[a - 1].val2);
-                            $("#" + a + "_tl").val(data[a - 1].val3);
-                            $("#" + a + "_kp").blur();
-                            $("#" + a + "_np").blur();
+                } else {
+                    //disabled from fetching data from moh731 for PMTCT
+                    if (1 === 2) {
+                        $("#1_kp").val(data.val1);
+                        $("#1_np").val(data.val2);
+                        $("#1_tl").val(data.tl);
+
+                        if (data.val1 !== '') {
+                            $("#1_kp").prop("readonly", true);
+                        } else {
+                            $("#1_kp").prop("readonly", false);
+
+                        }
+                        if (data.val2 !== '') {
+                            $("#1_np").prop("readonly", true);
+                        } else {
+
+                            $("#1_np").prop("readonly", false);
+                        }
+                        if (data.tl !== '') {
+                            $("#1_tl").prop("readonly", true);
+                        } else {
+                            $("#1_tl").prop("readonly", false);
+
                         }
 
-                    }//end of ifs
-                }
-
-
-
-                //=============blur===============
-                for (a = 1; a <= data.length; a++) {
-
-                    //                        
-                    if (ct === 'art') {
-                        // if(data[a-1].val1!==''){                           
-                        $("#" + a + "_adult").blur();
-                        $("#" + a + "_child").blur();
-                        //}
                     }
-                    if (ct === 'pmtct') {
-                        // if(data[a-1].val1!==''){                           
-                        $("#" + a + "_kp").blur();
-                        $("#" + a + "_np").blur();
-                        // }
-
-                    }//end of ifs
                 }
-
 
             }
         });
@@ -724,40 +306,438 @@ function loadcohorts() {
     }
 
 
-}
+}**/
+//cohortmonths
+
+            function cohortmonths() {
+
+                var year = $("#year").val();
+                var month = $("#month").val();
+                var cohorttype = $("#cohortttype").val();
+                $.ajax({
+                    url: 'getCohortMonths?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+                    type: 'post',
+                    dataType: 'html',
+                    success: function (data) {
+
+                        $("#nav-pills").html(data);
+
+                    }
+                });
+            }
+            cohortmonths();
 
 
-function validatefacility() {
+            function clearfields(indics) {
 
-    var returnval = true;
+                var ct = $("#cohortttype").val();
 
-    var facil = $("#facilityname").val();
+                for (a = 1; a <= indics; a++) {
+
+                    //                        
+                    if (ct === 'art') {
+
+                        $("#" + a + "_adult").val("");
+                        $("#" + a + "_child").val("");
+                        $("#" + a + "_tl").val("");
+
+                    }
+                    if (ct === 'pmtct') {
+
+                        $("#" + a + "_kp").val("");
+                        $("#" + a + "_np").val("");
+                        $("#" + a + "_tl").val("");
+
+                    }
+
+                }
+
+            }
+            //load the other elements
+
+            //a function to disable or enable hidden elements
+
+            function hiddenelements() {
+                //var cm_ = $("#cohortmonth").val();
+                var cm_ = $('.link-item').data('mn');
+                var ct_ = $("#cohortttype").val();
+
+                if (cm_ === '3m' && ct_ === 'pmtct') {
+
+
+                    $("#6_kp").attr("readonly", true);
+                    $("#6_np").attr("readonly", true);
+
+
+                    //tab index
+                    $("#6_kp").attr("tabindex", -1);
+                    $("#6_np").attr("tabindex", -1);
+                    //$("#6_tl").attr("readonly",true);
+                    $("#10_np").attr("readonly", true);
+                    $("#11_np").attr("readonly", true);
+
+                    //tab index
+                    $("#10_np").attr("tabindex", -1);
+                    $("#11_np").attr("tabindex", -1);
+
+                    //remove the required attribute
+                    $("#6_kp").removeAttr("required");
+                    $("#6_np").removeAttr("required");
+                    //$("#6_tl").removeAttr("required");
+                    $("#10_np").removeAttr("required");
+                    $("#11_np").removeAttr("required");
+
+                    // set disabled elements to 0
+
+                    $("#6_np").val("0");
+                    $("#6_kp").val("0");
+                    $("#6_tl").val("0");
+                    $("#10_np").val("0");
+                    $("#11_np").val("0");
+
+                } else if (cm_ === '9m' && ct_ === 'pmtct')
+                {
+
+                    $("#10_kp").attr("readonly", true);
+                    $("#10_np").attr("readonly", true);
+
+                    //tabindex
+                    $("#10_kp").attr("tabindex", -1);
+                    $("#10_np").attr("tabindex", -1);
+                    //$("#10_tl").attr("readonly",true);
+
+                    $("#11_kp").attr("readonly", true);
+                    $("#11_np").attr("readonly", true);
+                    // $("#11_tl").attr("readonly",true);
+
+                    //tabindex
+                    $("#11_kp").attr("tabindex", -1);
+                    $("#11_np").attr("tabindex", -1);
+
+                    $("#10_kp").removeAttr("required");
+                    $("#10_np").removeAttr("required");
+                    // $("#10_tl").removeAttr("required");
+
+                    $("#11_kp").removeAttr("required");
+                    $("#11_np").removeAttr("required");
+                    //  $("#11_tl").removeAttr("required");     
+                    //========
+                    $("#10_np").val("0");
+                    $("#11_np").val("0");
+
+
+                } else if (cm_ === '9m' && ct_ === 'art')
+                {
+
+                    $("#10_child").attr("readonly", true);
+                    $("#10_adult").attr("readonly", true);
+
+                    //tabindex
+                    $("#10_child").attr("tabindex", -1);
+                    $("#10_adult").attr("tabindex", -1);
+                    //$("#10_tl").attr("readonly",true);
+
+                    $("#11_child").attr("readonly", true);
+                    $("#11_adult").attr("readonly", true);
+                    // $("#11_tl").attr("readonly",true);
+
+                    //tabindex
+                    $("#11_child").attr("tabindex", -1);
+                    $("#11_adult").attr("tabindex", -1);
+
+                    $("#10_adult").removeAttr("required");
+                    $("#10_adult").removeAttr("required");
+                    // $("#10_tl").removeAttr("required");
+
+                    $("#11_child").removeAttr("required");
+                    $("#11_adult").removeAttr("required");
+                    //$("#11_tl").removeAttr("required");     
+                    //========
+                    $("#10_child").val("0");
+                    $("#11_adult").val("0");
+
+
+                } else if (cm_ === '3m' && ct_ === 'art') {
+
+
+                    $("#6_child").attr("readonly", true);
+                    $("#6_adult").attr("readonly", true);
+
+
+                    $("#10_child").attr("readonly", true);
+                    $("#10_adult").attr("readonly", true);
+
+                    $("#11_child").attr("readonly", true);
+                    $("#11_adult").attr("readonly", true);
+
+
+                    //tab index
+                    $("#6_child").attr("tabindex", -1);
+                    $("#6_adult").attr("tabindex", -1);
+
+                    $("#10_child").attr("tabindex", -1);
+                    $("#10_adult").attr("tabindex", -1);
+
+                    $("#11_child").attr("tabindex", -1);
+                    $("#11_adult").attr("tabindex", -1);
+
+                    //$("#6_tl").attr("readonly",true);
+
+                    //tab index      
+
+                    //remove the required attribute
+                    $("#6_adult").removeAttr("required");
+                    $("#6_child").removeAttr("required");
+
+                    $("#10_adult").removeAttr("required");
+                    $("#10_child").removeAttr("required");
+
+                    $("#11_adult").removeAttr("required");
+                    $("#11_child").removeAttr("required");
+                    //$("#6_tl").removeAttr("required");
+
+
+                    // set disabled elements to 0
+
+                    $("#6_adult").val("0");
+                    $("#6_child").val("0");
+                    $("#6_tl").val("0");
+
+
+                    $("#10_adult").val("0");
+                    $("#10_child").val("0");
+                    $("#10_tl").val("0");
+
+                    $("#11_adult").val("0");
+                    $("#11_child").val("0");
+                    $("#11_tl").val("0");
 
 
 
-    if (facil === '' || facil === 'Select Facility')
-    {
+                } else {
 
-        alert('Select facility');
-        //$("#facilityname select:first").focus();
+                    if (ct_ === 'pmtct') {
 
-        // $("#facilityname").css('border-color','red');
-        //$("select:first").focus();
-        $("#facilityname").focus();
-        returnval = false;
-    }
+                        $("#10_kp").removeAttr("readonly");
+                        $("#10_np").removeAttr("readonly");
+
+                        $("#10_kp").removeAttr("tabindex");
+                        $("#10_np").removeAttr("tabindex");
+                        //  $("#10_tl").removeAttr("readonly");
+
+                        $("#11_kp").removeAttr("readonly");
+                        $("#11_np").removeAttr("readonly");
+
+                        $("#11_kp").removeAttr("tabindex");
+                        $("#11_np").removeAttr("tabindex");
+                        // $("#11_tl").removeAttr("readonly");
+
+                        $("#6_kp").removeAttr("readonly");
+                        $("#6_np").removeAttr("readonly");
+
+                        $("#6_kp").removeAttr("tabindex");
+                        $("#6_np").removeAttr("tabindex");
+                        //   $("#6_tl").removeAttr("readonly");
 
 
-    return returnval;
+                        $("#10_kp").attr("required", true);
+                        $("#10_np").attr("required", true);
+                        //   $("#10_tl").attr("required",true);
 
-}
+                        $("#11_kp").attr("required", true);
+                        $("#11_np").attr("required", true);
+                        //   $("#11_tl").attr("required",true);
 
-function clickreportstab() {
-
-    $('#reportsbutton').click();
-}
-
+                        $("#6_kp").attr("required", true);
+                        $("#6_np").attr("required", true);
+                        //  $("#6_tl").attr("required",true);
 
 
+                    } else {
 
+
+                        $("#10_adult").removeAttr("readonly");
+                        $("#10_child").removeAttr("readonly");
+
+                        $("#10_adult").removeAttr("tabindex");
+                        $("#10_child").removeAttr("tabindex");
+                        //  $("#10_tl").removeAttr("readonly");
+
+                        $("#11_adult").removeAttr("readonly");
+                        $("#11_child").removeAttr("readonly");
+
+                        $("#11_adult").removeAttr("tabindex");
+                        $("#11_child").removeAttr("tabindex");
+                        // $("#11_tl").removeAttr("readonly");
+
+                        $("#6_adult").removeAttr("readonly");
+                        $("#6_child").removeAttr("readonly");
+
+                        $("#6_adult").removeAttr("tabindex");
+                        $("#6_child").removeAttr("tabindex");
+                        //   $("#6_tl").removeAttr("readonly");
+
+
+                        $("#10_adult").attr("required", true);
+                        $("#10_child").attr("required", true);
+                        //   $("#10_tl").attr("required",true);
+
+                        $("#11_adult").attr("required", true);
+                        $("#11_child").attr("required", true);
+                        //   $("#11_tl").attr("required",true);
+
+                        $("#6_adult").attr("required", true);
+                        $("#6_child").attr("required", true);
+                        //  $("#6_tl").attr("required",true);
+
+
+                    }
+
+                }
+
+
+
+            }
+
+
+            function isdisplayindicators()
+            {
+                var yr = $("#year").val();
+                var mn = $("#month").val();
+                var cm = $("#cohortmonth").val();
+                var fc = $("#facilityname").val();
+
+                if (yr !== '' && mn !== '' && cm !== '' && fc !== '' && fc !== 'Select Facility')
+                {
+                    // display facility name
+                    $("#dynamicindicators-3m").show();
+                    $("#dynamicindicators-6m").show();
+                    $("#dynamicindicators-12m").show();
+                    $("#dynamicindicators-24m").show();
+                     $("#dynamicindicators-36m").show();
+               } else
+                {
+                    $("#dynamicindicators-3m").hide();
+                    $("#dynamicindicators-6m").hide();
+                    $("#dynamicindicators-12m").hide();
+                    $("#dynamicindicators-24m").hide();
+                    $("#dynamicindicators-36m").hide();
+                    //        
+                }
+
+
+            }
+            
+            function loadcohorts() {
+
+                var yr = $("#year").val();
+                var mn = $("#month").val();
+                var ct = $("#cohortttype").val();
+                var fc = $("#facilityname").val();
+                var cm = $(".nav-tabs .nav-item > a.nav-link > span.hidden_id").data("mn");
+               // var x = document.getElementsByClassName("hid_id");
+               // var cm = $(".hidden_id").data('mn');
+                //elements[0].value;
+                
+                console.log(cm);
+
+                if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
+                    clearfields('12');
+                    $.ajax({
+                        url: 'loadSavedCohort2?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (data) {
+
+                            //alert(data.length);
+                            var a = 1;
+                            //display the values first
+                            for (a = 1; a <= data.length; a++) {
+
+                                //                        
+                                if (ct === 'art') {
+                                    if (data[a - 1].val1 !== '') {
+                                        $("#" + a + "_adult").val(data[a - 1].val1);
+                                        $("#" + a + "_child").val(data[a - 1].val2);
+                                        $("#" + a + "_tl").val(data[a - 1].val3);
+                                        $("#" + a + "_adult").blur();
+                                        $("#" + a + "_child").blur();
+                                    }
+                                }
+                                if (ct === 'pmtct') {
+                                    if (data[a - 1].val1 !== '') {
+                                        $("#" + a + "_kp").val(data[a - 1].val1);
+                                        $("#" + a + "_np").val(data[a - 1].val2);
+                                        $("#" + a + "_tl").val(data[a - 1].val3);
+                                        $("#" + a + "_kp").blur();
+                                        $("#" + a + "_np").blur();
+                                    }
+
+                                }//end of ifs
+                            }
+
+
+
+                            //=============blur===============
+                            for (a = 1; a <= data.length; a++) {
+
+                                //                        
+                                if (ct === 'art') {
+                                    // if(data[a-1].val1!==''){                           
+                                    $("#" + a + "_adult").blur();
+                                    $("#" + a + "_child").blur();
+                                    //}
+                                }
+                                if (ct === 'pmtct') {
+                                    // if(data[a-1].val1!==''){                           
+                                    $("#" + a + "_kp").blur();
+                                    $("#" + a + "_np").blur();
+                                    // }
+
+                                }//end of ifs
+                            }
+
+
+                        }
+                    });
+
+                }
+
+
+            }
+
+
+            function validatefacility() {
+
+                var returnval = true;
+
+                var facil = $("#facilityname").val();
+
+
+
+                if (facil === '' || facil === 'Select Facility')
+                {
+
+                    alert('Select facility');
+                    //$("#facilityname select:first").focus();
+
+                    // $("#facilityname").css('border-color','red');
+                    //$("select:first").focus();
+                    $("#facilityname").focus();
+                    returnval = false;
+                }
+
+
+                return returnval;
+
+            }
+
+            function clickreportstab() {
+
+                $('#reportsbutton').click();
+            }
+
+
+
+     
 

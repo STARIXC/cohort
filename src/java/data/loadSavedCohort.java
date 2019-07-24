@@ -56,7 +56,7 @@ public class loadSavedCohort extends HttpServlet {
                 tablename = "pmtct_cohort";
             } else if (ct.equals("stf")) {
                 tablename = "stf_cohort";
-            } else{
+            } else {
                 tablename = "new_defaulter_cohort";
             }
 //code to be executed if all the conditions are false  
@@ -79,7 +79,7 @@ public class loadSavedCohort extends HttpServlet {
                     sql = "select id, indicator, IFNULL(adult_" + cm + ",'0') as adult_" + cm + " , IFNULL(ayp_" + cm + ",'0') as ayp_" + cm + ", IFNULL(tl_" + cm + ",'0') as tl_" + cm + "  ";
 
                 } else {
-                    sql = "select  id, indicator ,IFNULL(np_" + cm + ",'') as np_" + cm + " , IFNULL(def_" + cm + ",'') as def_" + cm + " ,IFNULL(tl_" + cm + ",'') as tl_" + cm + " ";
+                    sql = "select  id, indicator ,IFNULL(kp_" + cm + ",'') as kp_" + cm + " , IFNULL(np_" + cm + ",'') as np_" + cm + " ,IFNULL(tl_" + cm + ",'') as tl_" + cm + " ";
 
                 }
 

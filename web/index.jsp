@@ -112,14 +112,14 @@
         </div>
 
 
-        <div class="my-1 mb-5 p-1 bg-white rounded box-shadow">
+        <div class="my-1 mb-5 p-2 bg-white rounded box-shadow">
             <section id="tabs" class="project-tab">
                 <div class="container1">
                     <div class="row">
 
                         <div class="col-md-12">
                             <nav>
-                                <ul class="nav tabs" id="nav-pills">
+                                <ul class="nav nav-tabs" id="nav-pills">
 
                                 </ul>
                             </nav>
@@ -469,8 +469,7 @@
 
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="assets/bootstrap/js/bootstrap.min.js" ></script
-    <script src="js/bootstrap-hover-tabs.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js" ></script>
     <script src="js/bootstrap-tabcollapse.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/select2.min.js"></script>
@@ -483,7 +482,14 @@
 
     <script src="js/loader.js"></script>
     <script src="js/datepicker.js"></script>
-
-
+    <script>
+$(document).ready(function(){
+  /**$("#nav-pills .nav-item a").on("click", function(){
+      var cm=$('#cohortmonth').val();
+   console.log("you have clicked me :"+cm);
+   loadcohorts();hiddenelements();isdisplayindicators();
+  });**/
+});
+</script>
 </body>
 </html>

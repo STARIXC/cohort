@@ -41,16 +41,15 @@ public class getCohortMonths extends HttpServlet {
                 monthstring = request.getParameter("mn");
             }
             loadcohort lc = new loadcohort();
-                data = "<li class='nav-item'><a class='nav-link btn navbar-btn btn-primary m-1 active' data-toggle='tab' data-target='#nav-home'>Add New</a></li>"
-                    + "<li class='nav-item' data-cohortmonth='3m'><a class='nav-link btn  btn-primary m-1' onclick(javascript:alert();loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-3months'   data-mn='3m' ><span class='hidden_id p-0' data-mn='3m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>3m. Cohort(" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -3) +")</span></a></li>"
-                    + "<li class='nav-item' data-cohortmonth='6m'><a class='nav-link btn navbar-btn btn-primary m-1' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-6months'   data-mn='6m' ><span class='hidden_id p-0' data-mn='6m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>6m. Cohort(" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -6) +")</span></a></li>"
-                    + "<li class='nav-item'  data-cohortmonth='12m'><a class='nav-link btn navbar-btn btn-primary m-1' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-12months'   data-mn='12m' ><span class='hidden_id p-0' data-mn='12m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>12m. Cohort(" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -12) +")</span></a></li>"
-                    + "<li class='nav-item'  data-cohortmonth='24m'><a class='nav-link btn navbar-btn btn-primary m-1' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-24months'   data-mn='24m' ><span class='hidden_id p-0' data-mn='24m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>24m. Cohort(" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -24) +")</span></a></li>";
-           if (cohorttype.equalsIgnoreCase("art")) {
-           data += "<li class='nav-item' data-cohortmonth='36m'><a class='nav-link btn navbar-btn btn-primary m-1' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-36months'   data-mn='36m' ><span class='hidden_id p-0' data-mn='36m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>36m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -36) +")</span></a></li>";
-           
-
-           }
+          
+                    data = "<li class='nav-item'><a class='nav-link active'data-toggle='tab' data-target='#nav-home'>Add New</a></li>"
+                    + "<li class='nav-item' data-cohortmonth='3m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-3months'   data-mn='3m' ><span class='hidden_id' data-mn='3m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>3m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -3) +")</span></a></li>"
+                    + "<li class='nav-item' data-cohortmonth='6m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-6months'   data-mn='6m' ><span class='hidden_id' data-mn='6m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>6m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -6) +")</span></a></li>"
+                    + "<li class='nav-item'  data-cohortmonth='12m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-12months'   data-mn='12m' ><span class='hidden_id' data-mn='12m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>12m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -12) +")</span></a></li>"
+                    + "<li class='nav-item'  data-cohortmonth='24m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-24months'   data-mn='24m' ><span class='hidden_id' data-mn='24m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>24m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -24) +")</span></a></li>";
+            if (cohorttype.equalsIgnoreCase("art")) {
+            data += "<li class='nav-item' data-cohortmonth='36m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-36months'   data-mn='36m' ><span class='hidden_id' data-mn='36m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>36m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -36) +")</span></a></li>";
+            }
          
             out.println(data);
         }
