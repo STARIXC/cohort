@@ -95,7 +95,7 @@
         <div class="p-3 my-3  bg-white rounded box-shadow">
 
             <div class="lh-100 text-center ">
-                <h5 class="mb-0 text-primary lh-100 ">ADHERENCE - STF/NEW & DEFAULTERS COHORT ANALYSIS SYSTEM [Ver 1.0.0]</h5>
+                <h5 class="mb-0 text-primary lh-100 ">ADHERENCE - STF/NEW & DEFAULTERS COHORT ANALYSIS SYSTEM [Ver 1.0.1]</h5>
 
             </div>
         </div>
