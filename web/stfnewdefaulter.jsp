@@ -95,12 +95,12 @@
         <div class="p-3 my-3  bg-white rounded box-shadow">
 
             <div class="lh-100 text-center ">
-                <h5 class="mb-0 text-primary lh-100 ">ADHERENCE - STF/NEW & DEFAULTERS COHORT ANALYSIS SYSTEM [Ver 1.0.0]</h5>
+                <h5 class="mb-0 text-primary lh-100 ">ADHERENCE - STF/NEW & DEFAULTERS COHORT ANALYSIS SYSTEM [Ver 1.0.1]</h5>
 
             </div>
         </div>
-        <div class="row p-3 mt-2">
-            <label class="col-sm-"></label>
+        <div class="row p-1 m-2 offset-1">
+            
             <a href="#" id='refreshpage' class="btn btn-danger col-md-6">
                 <i class="glyphicon glyphicon-refresh"></i>
                 <br> Refresh
@@ -108,7 +108,7 @@
             <a class="btn btn-danger col-md-6" title="Help" data-toggle="modal" href="#help">
                 <i class="glyphicon glyphicon-question-sign"></i>
                 <br> Help
-            </a>  <label class="col-sm-"></label>
+            </a>  
         </div>
 
 
@@ -249,7 +249,7 @@
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
 
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators" style="display:none;" > 
+                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr ><td class='col-xs-12' colspan='3'>
@@ -287,7 +287,7 @@
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">6 Months Records</h6>
 
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators-6m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-6m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr >
@@ -326,7 +326,7 @@
                                 <div class="tab-pane fade" id="nav-12months">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">12 Months Records</h6>
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators-12m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-12m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr ><td class='col-xs-12' colspan='3'>
@@ -367,7 +367,7 @@
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">24 Months Records</h6>
 
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators-24m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-24m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr ><td class='col-xs-12' colspan='3'>
@@ -407,7 +407,7 @@
                                 <div class="tab-pane fade" id="nav-36months">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">36 Months</h6>
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators-36m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-36m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr ><td class='col-xs-12' colspan='3'>
@@ -476,91 +476,6 @@
 
     <script src="js/loaderstf.js"></script>
     <script src="js/datepicker.js"></script>
-    <script>
-                                                                $(document).ready(function () {
-                                                                    /** $("#nav-pills .nav-item").on("click", function () {
-                                                                     var cm = $('.nav-item').data('cohortmonth');
-                                                                     console.log("you have clicked me :" + cm);
-                                                                     //loadcohorts();
-                                                                     hiddenelements();
-                                                                     isdisplayindicators();
-                                                                     });
-                                                                     
-                                                                    $("#nav-pills .nav-item").mouseup(function () {
-                                                                        function loadcohorts(){
-                                                                        var cm = $(this).data('cohortmonth');
-                                                                        var yr = $("#year").val();
-                                                                        var mn = $("#month").val();
-                                                                        var ct = $("#cohortttype").val();
-                                                                        var fc = $("#facilityname").val();
-                                                                        //var cm = $("#cohortmonth").val();
-                                                                        console.log("you have clicked me :" + cm);
-                                                                        if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
-                                                                            clearfields('12');
-                                                                            $.ajax({
-                                                                                url: 'loadSavedCohort?yr=' + yr + "&mn=" + mn + "&ct=" + ct + "&fc=" + fc + "&cm=" + cm,
-                                                                                type: 'post',
-                                                                                dataType: 'json',
-                                                                                success: function (data) {
 
-                                                                                    //alert(data.length);
-                                                                                    var a = 1;
-                                                                                    //display the values first
-                                                                                    for (a = 1; a <= data.length; a++) {
-
-                                                                                        //                        
-                                                                                        if (ct === 'stf') {
-                                                                                            if (data[a - 1].val1 !== '') {
-                                                                                                $("#" + a + "_adult").val(data[a - 1].val1);
-                                                                                                $("#" + a + "_child").val(data[a - 1].val2);
-                                                                                                $("#" + a + "_tl").val(data[a - 1].val3);
-                                                                                                $("#" + a + "_adult").blur();
-                                                                                                $("#" + a + "_child").blur();
-                                                                                            }
-                                                                                        }
-                                                                                        if (ct === 'defaulter') {
-                                                                                            if (data[a - 1].val1 !== '') {
-                                                                                                $("#" + a + "_kp").val(data[a - 1].val1);
-                                                                                                $("#" + a + "_np").val(data[a - 1].val2);
-                                                                                                $("#" + a + "_tl").val(data[a - 1].val3);
-                                                                                                $("#" + a + "_kp").blur();
-                                                                                                $("#" + a + "_np").blur();
-                                                                                            }
-
-                                                                                        }//end of ifs
-                                                                                    }
-
-
-
-                                                                                    //=============blur===============
-                                                                                    for (a = 1; a <= data.length; a++) {
-
-                                                                                        //                        
-                                                                                        if (ct === 'stf') {
-                                                                                            // if(data[a-1].val1!==''){                           
-                                                                                            $("#" + a + "_adult").blur();
-                                                                                            $("#" + a + "_child").blur();
-                                                                                            //}
-                                                                                        }
-                                                                                        if (ct === 'defaulter') {
-                                                                                            // if(data[a-1].val1!==''){                           
-                                                                                            $("#" + a + "_kp").blur();
-                                                                                            $("#" + a + "_np").blur();
-                                                                                            // }
-
-                                                                                        }//end of ifs
-                                                                                    }
-
-
-                                                                                }
-                                                                            });
-
-                                                                        }
-                                                                    }});**/
-                                                               
-                                                            });
-                                                            
-                                                            
-    </script>
 </body>
 </html>

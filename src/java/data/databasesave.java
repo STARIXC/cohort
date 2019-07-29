@@ -42,7 +42,7 @@ public class databasesave extends HttpServlet {
             }
 
             if (request.getParameter("database") == null) {
-                dbase = "tb_register";
+                dbase = "pmtct_art_cohort";
             } else {
                 dbase = request.getParameter("database");
             }
@@ -53,7 +53,7 @@ public class databasesave extends HttpServlet {
             }
             if (request.getParameter("password") == null) {
 
-                password = "";
+                password = "admin";
             } else {
                 password = request.getParameter("password");
             }
@@ -65,7 +65,7 @@ public class databasesave extends HttpServlet {
             dbsetup = dbconnpath + "\\dbase.txt";
             if (isUnix()) {
                 dbconnpath = "//TB_REGISTER/_/_";
-                dbsetup = dbconnpath + "/dtbase.txt";
+                dbsetup = dbconnpath + "/dbase.txt";
             }
             //CREATE A DIRECTORY
             new File(dbconnpath).mkdirs();
@@ -82,7 +82,7 @@ public class databasesave extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
              url = "jdbc:mysql://" + host + "/" + dbase + "";
             Connection connection = null;
-            status = "failed";
+            status = "failed to connect";
             try {
                 System.out.println("Connecting databse ...");
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
