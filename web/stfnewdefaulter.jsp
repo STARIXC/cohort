@@ -141,7 +141,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
+                                                    <select  onchange='getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
 
                                                         <% if (session.getAttribute("ct") != null) {
                                                                 if (session.getAttribute("ct").equals("stf")) {
@@ -166,7 +166,7 @@
 
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                    <select required="true" onclick="getmonth();cohortmonths();isdisplayindicators();"   name="year" id="year" class="form-control" >
+                                                    <select required="true" onclick="getmonth();cohortmonths();"   name="year" id="year" class="form-control" >
                                                         <option value=''>Select Year</option>
                                                         <%
 
@@ -211,7 +211,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Reporting Month </label>
-                                                    <select required="true"    name="month" id="month" onchange="cohortmonths();isdisplayindicators();" class="form-control" >
+                                                    <select required="true"    name="month" id="month" onchange="cohortmonths();" class="form-control" >
                                                         <option>Select Month</option>
                                                         <option value="01">January</option>
                                                         <option value="02">February</option>
@@ -233,7 +233,7 @@
 
                                                 <div class="form-group">
                                                     <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                    <select required="true"  onchange="isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
+                                                    <select required="true"  onchange=""   name="facilityname" id="facilityname" class="form-control" >
                                                         <option>Select Facility Name</option>
 
                                                     </select>
@@ -287,7 +287,7 @@
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">6 Months Records</h6>
 
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-6m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered ' id="dynamicindicators-6m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr >
@@ -326,7 +326,7 @@
                                 <div class="tab-pane fade" id="nav-12months">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">12 Months Records</h6>
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-12m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered' id="dynamicindicators-12m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr ><td class='col-xs-12' colspan='3'>
@@ -367,7 +367,7 @@
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">24 Months Records</h6>
 
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-24m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered' id="dynamicindicators-24m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr ><td class='col-xs-12' colspan='3'>
@@ -407,7 +407,7 @@
                                 <div class="tab-pane fade" id="nav-36months">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">36 Months</h6>
                                     <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered dynamicindicators' id="dynamicindicators-36m" style="display:none;" > 
+                                        <table class='table table-striped table-bordered' id="dynamicindicators-36m" style="display:none;" > 
 
                                             <!------INDICATORS----->
                                             <tr ><td class='col-xs-12' colspan='3'>

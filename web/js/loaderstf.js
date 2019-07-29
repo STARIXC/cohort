@@ -191,6 +191,7 @@ function createdynamicinputs() {
             var row1 = "";
             var row2 = "";
             var count = 1;
+            var cohortmonth=$("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
             var currentcohort = $("#cohortttype").val().toUpperCase();
             for (a = 0; a < result.length; a++) {
 
@@ -244,7 +245,9 @@ function createdynamicinputs() {
                     }
 
 
-                    row2 += "<td class='" + tdclass + "' colspan='" + colspan + "' > <div class='control-group' > <label> " + label + " </label> <div class='controls'> <input   required='true' onkeypress='return numbers(event);' " + isreadonly + "  " + tabindex + " onblur=\"" + onblur + "\" type='tel' maxlength='4' min ='" + minimum + "' max='" + maximum + "'  name='" + indicatorid + "' id='" + indicatorid + "' class='form-control inputs'> </div> </div> </td> ";
+                    row2 += "<td class='" + tdclass + "' colspan='" + colspan + "' >"
+                            +" <div class='control-group' > <label> " + label + " </label> "
+                            +"<div class='controls'> <input   required='true' onkeypress='return numbers(event);' " + isreadonly + "  " + tabindex + " onblur=\"" + onblur + "\" type='tel' maxlength='4' min ='" + minimum + "' max='" + maximum + "'  name='" + indicatorid + "' id='" + indicatorid + "' class='form-control inputs'> </div> </div> </td> ";
                     //IndicatorID	Age	IndicatorName	Level	datainputtype	Min	Max	onblur	onkeypress	Class	Required
 
 
@@ -252,13 +255,25 @@ function createdynamicinputs() {
                 }
             }
             row2 += " </tr> ";
-
+            if (cohortmonth==="3m") {
+                $("#dynamicindicators").html(row2);
+            } else if(cohortmonth==="6m"){
+                $("#dynamicindicators-6m").html(row2);
+            }else if(cohortmonth==="12m"){
+                $("#dynamicindicators-12m").html(row2);
+            }else if(cohortmonth==="24m"){
+                $("#dynamicindicators-24m").html(row2);
+            }else if(cohortmonth==="3m"){$("#dynamicindicators-36m").html(row2);
+            }else{
+                 $("#dynamicindicators").html(row2);
+            }
+            
             //alert(row2);
-            $(".dynamicindicators").html(row2);
-            //$("#dynamicindicators-6m").html(row2);
-         //   $("#dynamicindicators-12m").html(row2);
-           // $("#dynamicindicators-24m").html(row2);
-           // $("#dynamicindicators-36m").html(row2);
+            
+            
+            
+           // 
+           // 
             // alert(result[0].IndicatorName);
         });// ned of input field loading
 
@@ -713,15 +728,19 @@ function isdisplayindicators()
 
         if (cm === '3m') {
             $("#dynamicindicators").show();
+        
         } else if (cm === '6m') {
             $("#dynamicindicators-6m").show();
+           
         } else if (cm === '12m') {
             $("#dynamicindicators-12m").show();
+          
         } else if (cm === '24m') {
             $("#dynamicindicators-24m").show();
+      
         } else {
             $("#dynamicindicators-36m").show();
-
+      
         }
 
 
