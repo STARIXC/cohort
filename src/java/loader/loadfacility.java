@@ -65,7 +65,7 @@ public class loadfacility extends HttpServlet {
             
             
             //String getfacils="select * from facilities where "+facilfilter+" ";
-            String getfacils="select * from facilities where "+facilfilter+" ";
+            String getfacils="SELECT * FROM pmtc_art_cohort.facilities where "+facilfilter+" ";
          
             dbConn conn= new dbConn();
             conn.rs=conn.st.executeQuery(getfacils);

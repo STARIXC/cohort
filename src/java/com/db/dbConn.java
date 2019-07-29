@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static com.db.OSValidator.isUnix;
 import static com.db.OSValidator.isWindows;
-import com.mysql.jdbc.CallableStatement;
+import com.mysql.cj.jdbc.CallableStatement;
 public class dbConn {
 
     public ResultSet rs0, rs, rs1, rs2, rs3, rs4, rs_1, rs_2, rs_3, rs_4, rs_5, rs_6, anc_sch_rs;
@@ -179,7 +179,7 @@ public class dbConn {
         try {
 
             //not so good for now because the host name is static
-            String url = "http://localhost:8085/dataentry/dataconfig.jsp";
+            String url = "http://localhost:8080/dataentry/dataconfig.jsp";
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
             //getdbsettings("M");
         } catch (IOException ex) {
