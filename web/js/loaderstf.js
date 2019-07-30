@@ -191,7 +191,7 @@ function createdynamicinputs() {
             var row1 = "";
             var row2 = "";
             var count = 1;
-            var cohortmonth = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
+            //var cohortmonth = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
             var currentcohort = $("#cohortttype").val().toUpperCase();
             for (a = 0; a < result.length; a++) {
 
@@ -255,19 +255,12 @@ function createdynamicinputs() {
                 }
             }
             row2 += " </tr> ";
-            
-                $("#dynamicindicators").html(row2);
-        
-                $("#dynamicindicators-6m").html(row2);
-        
-                $("#dynamicindicators-12m").html(row2);
-        
-                $("#dynamicindicators-24m").html(row2);
-        
-                $("#dynamicindicators-36m").html(row2);
 
-                $("#dynamicindicators").html(row2);
-       
+            $("#dynamicindicators-3m").html(row2);
+            $("#dynamicindicators-6m").html(row2);
+            $("#dynamicindicators-12m").html(row2);
+            $("#dynamicindicators-24m").html(row2);
+            $("#dynamicindicators-36m").html(row2);
             //alert(row2);
 
 
@@ -716,37 +709,31 @@ function hiddenelements() {
 }
 
 
-function isdisplayindicators()
-{
-    var yr = $("#year").val();
-    var mn = $("#month").val();
-    var cm = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
-    var fc = $("#facilityname").val();
+ function isdisplayindicators()
+            {
+                var yr = $("#year").val();
+                var mn = $("#month").val();
+                var cm = $("#cohortmonth").val();
+                var fc = $("#facilityname").val();
 
-    if (yr !== '' && mn !== '' && cm !== '' && fc !== '' && fc !== 'Select Facility')
-    {
-        $("#dynamicindicators").show();
+                if (yr !== '' && mn !== '' && cm !== '' && fc !== '' && fc !== 'Select Facility')
+                {
+                    // display facility name
+                    $("#dynamicindicators-3m").show();
+                    $("#dynamicindicators-6m").show();
+                    $("#dynamicindicators-12m").show();
+                    $("#dynamicindicators-24m").show();
+                     $("#dynamicindicators-36m").show();
+               } else
+                {
+                    $("#dynamicindicators-3m").hide();
+                    $("#dynamicindicators-6m").hide();
+                    $("#dynamicindicators-12m").hide();
+                    $("#dynamicindicators-24m").hide();
+                    $("#dynamicindicators-36m").hide();
+                    //        
+                }
 
-        $("#dynamicindicators-6m").show();
-
-        $("#dynamicindicators-12m").show();
-
-        $("#dynamicindicators-24m").show();
-
-        $("#dynamicindicators-36m").show();
-
-
-
-
-    } else
-    {
-        $("#dynamicindicators").hide();
-        // $("#dynamicindicators-6m").hide();
-        // $("#dynamicindicators-12m").hide();
-        //("#dynamicindicators-24m").hide();
-        // $("#dynamicindicators-36m").hide();
-        //        
-    }
 
 
 }

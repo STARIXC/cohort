@@ -398,31 +398,12 @@ function cohortmonths() {
     var month = $("#month").val();
     var cohorttype = $("#cohortttype").val();
     $.ajax({
-        url: 'getCohortMonth?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        url: 'getCohortMonths?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
         type: 'post',
         dataType: 'html',
         success: function (data) {
 
-            $("#cohortmonth").html(data);
-            $("#nav-pills").html(data);
-
-        }
-    });
-}
-cohortmonths();
-
-function cohorttab() {
-
-    var year = $("#year").val();
-    var month = $("#month").val();
-    var cohorttype = $("#cohortttype").val();
-    $.ajax({
-        url: 'getCohortTab?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
-        type: 'post',
-        dataType: 'html',
-        success: function (data) {
-
-            $("#cohortmonth").html(data);
+            //$("#cohortmonth").html(data);
             $("#nav-pills").html(data);
 
         }
