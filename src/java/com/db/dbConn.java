@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static com.db.OSValidator.isUnix;
 import static com.db.OSValidator.isWindows;
-import com.mysql.cj.jdbc.CallableStatement;
+import com.mysql.cj.jdbc.*;
 public class dbConn {
 
     public ResultSet rs0, rs, rs1, rs2, rs3, rs4, rs_1, rs_2, rs_3, rs_4, rs_5, rs_6, anc_sch_rs;
@@ -42,7 +42,7 @@ public class dbConn {
 
  public dbConn() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             // Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mhc","root", "");
             conn = null;
             //if the saved host name is less than 2 letters long, then thats not a genuine host name

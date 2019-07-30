@@ -41,6 +41,14 @@
         <url-pattern>/getCohortMonths</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>getCohortMonth</servlet-name>
+        <servlet-class>data.getCohortMonth</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getCohortMonth</servlet-name>
+        <url-pattern>/getCohortMonth</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>loadSavedCohort</servlet-name>
         <servlet-class>data.loadSavedCohort</servlet-class>
     </servlet>

@@ -81,9 +81,10 @@ public class databasesave extends HttpServlet {
             getLineCount(dbsetup);
             response.setContentType("text/html;charset=UTF-8");
              url = "jdbc:mysql://" + host + "/" + dbase + "";
-            Connection connection = null;
+            
             status = "failed to connect";
             try {
+                Connection connection = null;
                 System.out.println("Connecting databse ...");
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 connection = DriverManager.getConnection(url, user, password);

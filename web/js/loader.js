@@ -359,7 +359,7 @@ function getFacilitiesJson() {
 
             function hiddenelements() {
                 //var cm_ = $("#cohortmonth").val();
-                var cm_ = $('.link-item').data('mn');
+                var cm_ = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
                 var ct_ = $("#cohortttype").val();
 
                 if (cm_ === '3m' && ct_ === 'pmtct') {
