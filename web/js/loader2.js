@@ -192,6 +192,7 @@ function createdynamicinputs() {
             var row2 = "";
             var count = 1;
             var currentcohort = $("#cohortttype").val().toUpperCase();
+            var cohortmn=$("#cohortmonth").val();
             for (a = 0; a < result.length; a++) {
 
                 if (result[a].category === currentcohort) {
@@ -254,7 +255,8 @@ function createdynamicinputs() {
             row2 += " </tr> ";
 
             //alert(row2);
-            $(".dynamicindicators").html(row2);
+            if
+            $("#dynamicindicators").html(row2);
             //$("#dynamicindicators-6m").html(row2);
             //   $("#dynamicindicators-12m").html(row2);
             // $("#dynamicindicators-24m").html(row2);
