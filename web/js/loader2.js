@@ -256,9 +256,9 @@ function createdynamicinputs() {
             //alert(row2);
             $(".dynamicindicators").html(row2);
             //$("#dynamicindicators-6m").html(row2);
-         //   $("#dynamicindicators-12m").html(row2);
-           // $("#dynamicindicators-24m").html(row2);
-           // $("#dynamicindicators-36m").html(row2);
+            //   $("#dynamicindicators-12m").html(row2);
+            // $("#dynamicindicators-24m").html(row2);
+            // $("#dynamicindicators-36m").html(row2);
             // alert(result[0].IndicatorName);
         });// ned of input field loading
 
@@ -398,7 +398,23 @@ function cohortmonths() {
     var month = $("#month").val();
     var cohorttype = $("#cohortttype").val();
     $.ajax({
-        url: 'getCohortMonths?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        url: 'getCohortMonth?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        type: 'post',
+        dataType: 'html',
+        success: function (data) {
+
+            $("#cohortmonth").html(data);
+            //$("#nav-pills").html(data);
+
+        }
+    });
+}
+cohortmonths();
+
+function displayTabs() {
+    var cohortmonth = $("#cohortmonth").val();
+    $.ajax({
+        url: 'getTabs?cm=' + cohortmonth ,
         type: 'post',
         dataType: 'html',
         success: function (data) {
@@ -408,10 +424,9 @@ function cohortmonths() {
 
         }
     });
+
 }
-cohortmonths();
-
-
+displayTabs();
 function clearfields(indics) {
 
     var ct = $("#cohortttype").val();
@@ -443,9 +458,9 @@ function clearfields(indics) {
 //a function to disable or enable hidden elements
 
 function hiddenelements() {
-    //var cm_ = $("#cohortmonth").val();
+    var cm_ = $("#cohortmonth").val();
     // var cm_ = $('.link-item').data('mn');
-    var cm_ = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
+    //var cm_ = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
     var ct_ = $("#cohortttype").val();
 
     if (cm_ === '3m' && ct_ === 'defaulter') {
@@ -706,7 +721,8 @@ function isdisplayindicators()
 {
     var yr = $("#year").val();
     var mn = $("#month").val();
-    var cm = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
+    //var cm = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
+    var cm = $("#cohortmonth").val();
     var fc = $("#facilityname").val();
 
     if (yr !== '' && mn !== '' && cm !== '' && fc !== '' && fc !== 'Select Facility')
@@ -748,9 +764,9 @@ function loadcohorts() {
     var mn = $("#month").val();
     var ct = $("#cohortttype").val();
     var fc = $("#facilityname").val();
-    //var cm = $("#cohortmonth").val();
-    var cm = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
-    console.log("you have clicked me :" + cm);
+    var cm = $("#cohortmonth").val();
+    //var cm = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
+    //console.log("you have clicked me :" + cm);
     if (mn !== '' && ct !== '' && fc !== '' && cm !== '') {
         clearfields('12');
         $.ajax({

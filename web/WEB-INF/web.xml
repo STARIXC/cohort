@@ -4,6 +4,10 @@
         <servlet-name>loadfacility</servlet-name>
         <servlet-class>loader.loadfacility</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getTabs</servlet-name>
+        <servlet-class>data.getTabs</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loadfacility</servlet-name>
         <url-pattern>/loadfacility</url-pattern>
@@ -64,7 +68,6 @@
         <servlet-name>loadSavedCohort2</servlet-name>
         <url-pattern>/loadSavedCohort2</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>data.login</servlet-class>
@@ -104,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>databasesave</servlet-name>
         <url-pattern>/databasesave</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getTabs</servlet-name>
+        <url-pattern>/getTabs</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

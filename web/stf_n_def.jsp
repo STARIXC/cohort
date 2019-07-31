@@ -29,7 +29,7 @@
 
 </head>
 
-<body class="bg-light" onload="">
+<body class="bg-light" onload="displayTabs();">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <a class="navbar-brand mr-auto mr-lg-0" href="#">ADHERENCE - STF/New and Defaulter's Cohort Analysis Report  SYSTEM </a>
         <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
@@ -120,7 +120,7 @@
                         <div class="col-md-12">
                             <nav>
                                 <ul class="nav nav-tabs" id="nav-pills">
-
+                                       
                                 </ul>
                             </nav>
 
@@ -141,7 +141,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
+                                                    <select  onchange='createdynamicinputs();displayTabs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
 
                                                         <% if (session.getAttribute("ct") != null) {
                                                                 if (session.getAttribute("ct").equals("stf")) {
@@ -166,7 +166,7 @@
 
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                    <select required="true" onclick="getmonth();cohortmonths();isdisplayindicators();"   name="year" id="year" class="form-control" >
+                                                    <select required="true" onclick="getmonth();displayTabs();cohortmonths();isdisplayindicators();"   name="year" id="year" class="form-control" >
                                                         <option value=''>Select Year</option>
                                                         <%
 
@@ -211,7 +211,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Reporting Month </label>
-                                                    <select required="true"    name="month" id="month" onchange="cohortmonths();isdisplayindicators();" class="form-control" >
+                                                    <select required="true"    name="month" id="month" onchange="cohortmonths();displayTabs();isdisplayindicators();" class="form-control" >
                                                         <option>Select Month</option>
                                                         <option value="01">January</option>
                                                         <option value="02">February</option>
@@ -233,7 +233,7 @@
 
                                                 <div class="form-group">
                                                     <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
-                                                    <select required="true" onchange="loadcohorts();hiddenelements();isdisplayindicators();"  name="cohortmonth" id="cohortmonth" class="form-control" >
+                                                    <select required="true" onchange="loadcohorts();displayTabs();hiddenelements();isdisplayindicators();"  name="cohortmonth" id="cohortmonth" class="form-control" >
                                                                             <option value=''>Select reporting year and month</option>
 
 

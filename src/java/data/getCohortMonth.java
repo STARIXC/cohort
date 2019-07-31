@@ -31,7 +31,7 @@ public class getCohortMonth extends HttpServlet {
 
             String year = "" + (cl.get(Calendar.YEAR));
             String monthstring = "" + (cl.get(Calendar.MONTH) + 1);
-            String cohorttype = "art";
+            String cohorttype = "stf";
             if (request.getParameter("ct") != null && !request.getParameter("ct").equals("")) {
                 cohorttype = request.getParameter("ct");
             }
@@ -43,16 +43,21 @@ public class getCohortMonth extends HttpServlet {
             }
             loadcohort lc = new loadcohort();
                     
-                    link = "<li class='nav-item btn btn-primary p-0  mr-1 mb-1'><a class='nav-link active'data-toggle='tab' data-target='#nav-home'>Add New</a></li>"
-                    + "<li class='nav-item btn btn-primary p-0  mr-1 mb-1' data-cohortmonth='3m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-3months'><span class='hidden_id' data-mn='3m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>3m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -3) +")</span></a></li>"
-                    + "<li class='nav-item btn btn-primary  p-0  mr-1 mb-1' data-cohortmonth='6m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-6months'><span class='hidden_id' data-mn='6m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>6m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -6) +")</span></a></li>"
-                    + "<li class='nav-item btn btn-primary p-0  mr-1 mb-1'  data-cohortmonth='12m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-12months'><span class='hidden_id' data-mn='12m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>12m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -12) +")</span></a></li>"
-                    + "<li class='nav-item btn btn-primary p-0 mr-1 mb-1'  data-cohortmonth='24m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-24months'><span class='hidden_id' data-mn='24m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>24m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -24) +")</span></a></li>";
-            if (cohorttype.equalsIgnoreCase("art")) {
-            link += "<li class='nav-item btn btn-primary p-0 mr-1 mb-1' data-cohortmonth='36m'><a class='nav-link' onclick(loadcohorts();hiddenelements();) data-toggle='tab' data-target='#nav-36months'   data-mn='36m' ><span class='hidden_id' data-mn='36m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>36m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -36) +")</span></a></li>";
-            }
-         
-            out.println(link);
+                           
+data="<option value=''>Select Month</option>"+
+"<option value='3m'>3m. Cohort ("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -3)+") </option>"+
+"<option value='6m'>6m. Cohort ("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -6)+")</option>"+
+//"<option value='9m'>9m. Cohort ("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -9)+") </option>"+
+"<option value='12m'>12m. Cohort ("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -12)+") </option>";
+//"<option value='24m'>24m. Cohort ("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -24)+") </option>";
+
+//if(cohorttype.equalsIgnoreCase("stf")){
+//data+="<option value='36m'>36m. Cohort("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -36)+")</option>";
+//"<option value='48m'>48m. Cohort("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -48)+")</option>"+
+//+"<option value='60m'>60m. Cohort("+lc.getpreviousmonth(new Integer(year),new Integer(monthstring), -60)+")</option>";
+//}     
+     
+            out.println(data);
         }
     }
 
