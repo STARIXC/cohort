@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="row p-1 m-2 offset-1">
-            
+
             <a href="#" id='refreshpage' class="btn btn-danger col-md-6">
                 <i class="glyphicon glyphicon-refresh"></i>
                 <br> Refresh
@@ -125,15 +125,51 @@
                             </nav>
 
 
-                            <form class="tab-content weeklydataform " id="nav-tabContent" onsubmit="return validatedata();" action="multisave" method="post" >
+                            <div class="tab-content weeklydataform " id="nav-tabContent" >
 
                                 <div class="tab-pane fade show active" id="nav-home">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">Enter New Record</h6>
                                     <div class="text-muted pl-5 pt-3 bg-light">
+                                        <div class="row offset-0 p-2">
+                                            <div class="col-md-12">
+                        <p>This  application is created for aiding users in collecting data for the MCA/ART Cohort Analysis. One is expected to enter data per facility.</p>
+                        <h3>Indicators</h3>
+                        <p>The specific indicators that one should enter data for are;</p>
+                        <ul>
+
+
+                            <li>A. Enrolled into cohort	</li>														
+                            <li>B. Transfers In(T.I)		</li>													
+                            <li>C. Transfers Out(T.O)		</li>													
+                            <li>D. Net Cohort(A+B-C)		</li>													
+                            <li>E. Defaulters			</li>												
+                            <li>F. Lost to follow up (LTFU)		</li>													
+                            <li>G. Reported Dead			</li>												
+                            <li>H. Stopped				</li>											
+                            <li>I. Alive and Active on Treatment</li>															
+                            <li>J. Viral Load Collected		</li>													
+                            <li>K. Virally suppressed (VL<1000)</li>
+
+
+
+                        </ul>
+                        <h3> Facilities</h3>
+                        <p> The selected cohort type(MCA/ART) determines the list of facilities availed for choosing </p>
+                   
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                <div class="tab-pane fade" id="nav-3months">
+                                    
+                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
+                                    <div class="text-muted pl-5 pt-3 bg-light">
                                         <center>
                                             <div id="loading" class="alert-success"></div>
                                         </center>
-
+                                        <form onsubmit="return validatedata();" action="multisave" method="post">
 
 
                                         <div class="row offset-0 p-2">
@@ -144,7 +180,13 @@
                                                     <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
 
                                                         <% if (session.getAttribute("ct") != null) {
-                                                                if (session.getAttribute("ct").equals("stf")) {
+                                                            if (session.getAttribute("ct").equals("art")) {
+                                                                    out.println("<option selected value='art'>ACA</option>");
+                                                                    out.println("<option value='pmtct'>MCA</option>");
+                                                                } else if (session.getAttribute("ct").equals("pmtct")) {
+                                                                    out.println("<option  value='art'>ACA</option>");
+                                                                    out.println("<option selected value='pmtct'>MCA</option>");
+                                                                }else if (session.getAttribute("ct").equals("stf")) {
                                                                     out.println("<option selected value='stf'>STF</option>");
                                                                     out.println("<option value='defaulter'>NEW AND DEFAULTER</option>");
                                                                 } else if (session.getAttribute("ct").equals("defaulter")) {
@@ -155,6 +197,8 @@
                                                             } else {%>
 
                                                         <option value="">Select Cohort Type</option>
+                                                        <option value="art">ACA</option>
+                                                        <option value="pmtct">MCA</option>
                                                         <option value="stf">STF</option>
                                                         <option value="defaulter">NEW AND DEFAULTER</option>
 
@@ -173,7 +217,6 @@
                                                             Calendar cal = Calendar.getInstance();
                                                             int curyear = cal.get(Calendar.YEAR);
                                                             int curmn = cal.get(Calendar.MONTH) + 1;
-
                                                             if (curmn >= 10) {
                                                                 curyear = curyear + 1;
                                                             }
@@ -232,6 +275,17 @@
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
+                                                    <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
+                                                    <Input type="text" readonly onchange="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth" class="form-control" data-cohortmonth='3m'value='3m' >
+
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
                                                     <label> <font color="red"><b>*</b></font>  Facility Name:</label>
                                                     <select required="true"  onchange="loadcohorts();isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
                                                         <option>Select Facility Name</option>
@@ -241,13 +295,8 @@
 
                                             </div>
                                         </div>
-
+                                        </form>
                                     </div>
-
-                                </div>
-                                <div class="tab-pane fade" id="nav-3months">
-                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
-                                        
                                     <div class="text-muted p-3 border border-gray">
                                         <table class='table table-striped table-bordered' onload="loadcohorts();hiddenelements();isdisplayindicators();" id="dynamicindicators-3m" style="display:none;" > 
 
@@ -286,171 +335,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="nav-6months">
-                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">6 Months Records</h6>
-
-                                    <div class="text-muted p-3 border border-gray" onload="loadcohorts();hiddenelements();isdisplayindicators();">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators-6m" style="display:none;" > 
-
-                                            <!------INDICATORS----->
-                                            <tr ><td class='col-xs-12' colspan='3'>
-                                                    <div class='control-group'>
-
-
-
-
-
-                                                    </div></td>
-                                            </tr>                                 
-
-
-                                        </table>
-                                        <table class="table table-striped table-bordered">
-                                            <tr><td colspan="3" class="col-xs-12">               
-                                                    <div class="control-group col-xs-12">
-                                                        <div class="alert-info">Note: Please enter all the required data.</div>
-                                                        <br/>
-                                                        <div class="controls">
-                                                            <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
-
-                                                        </div>
-                                                        <div class="controls">
-                                                            <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
-                                                                UPDATE 
-                                                            </button>
-                                                        </div>
-
-
-                                                    </div>
-                                                </td></tr>
-
-                                        </table>
-
-
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-12months">
-                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">12 Months Records</h6>
-                                    <div class="text-muted p-3 border border-gray" onload="loadcohorts();hiddenelements();isdisplayindicators();">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators-12m" style="display:none;" > 
-
-                                            <!------INDICATORS----->
-                                            <tr ><td class='col-xs-12' colspan='3'>
-                                                    <div class='control-group'>
-
-
-
-
-
-                                                    </div></td>
-                                            </tr>                                 
-
-
-                                        </table>
-                                        <table class="table table-striped table-bordered">
-                                            <tr><td colspan="3" class="col-xs-12">               
-                                                    <div class="control-group col-xs-12">
-                                                        <div class="alert-info">Note: Please enter all the required data.</div>
-                                                        <br/>
-                                                        <div class="controls">
-                                                            <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
-
-                                                        </div>
-                                                        <div class="controls">
-                                                            <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
-                                                                UPDATE 
-                                                            </button>
-                                                        </div>
-
-
-                                                    </div>
-                                                </td></tr>
-
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-24months">
-                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">24 Months Records</h6>
-
-                                    <div class="text-muted p-3 border border-gray" onload="loadcohorts();hiddenelements();isdisplayindicators();">
-                                        <table class='table table-striped table-bordered' id="dynamicindicators-24m" style="display:none;" > 
-
-                                            <!------INDICATORS----->
-                                            <tr ><td class='col-xs-12' colspan='3'>
-                                                    <div class='control-group'>
-
-
-
-
-
-                                                    </div></td>
-                                            </tr>                                 
-
-
-                                        </table>
-                                        <table class="table table-striped table-bordered">
-                                            <tr><td colspan="3" class="col-xs-12">               
-                                                    <div class="control-group col-xs-12">
-                                                        <div class="alert-info">Note: Please enter all the required data.</div>
-                                                        <br/>
-                                                        <div class="controls">
-                                                            <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
-
-                                                        </div>
-                                                        <div class="controls">
-                                                            <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
-                                                                UPDATE 
-                                                            </button>
-                                                        </div>
-
-
-                                                    </div>
-                                                </td></tr>
-
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-36months">
-                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">36 Months</h6>
-                                    <div class="text-muted p-3 border border-gray" onload="loadcohorts();hiddenelements();isdisplayindicators();">
-                                        <table class='table table-striped table-bordered'id="dynamicindicators-36m" style="display:none;" > 
-
-                                            <!------INDICATORS----->
-                                            <tr ><td class='col-xs-12' colspan='3'>
-                                                    <div class='control-group'>
-
-
-
-
-
-                                                    </div></td>
-                                            </tr>                                 
-
-
-                                        </table>
-                                        <table class="table table-striped table-bordered">
-                                            <tr><td colspan="3" class="col-xs-12">               
-                                                    <div class="control-group col-xs-12">
-                                                        <div class="alert-info">Note: Please enter all the required data.</div>
-                                                        <br/>
-                                                        <div class="controls">
-                                                            <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
-
-                                                        </div>
-                                                        <div class="controls">
-                                                            <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
-                                                                UPDATE 
-                                                            </button>
-                                                        </div>
-
-
-                                                    </div>
-                                                </td></tr>
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </form>
+                                                   
+                            </div>
 
                         </div>
                     </div>
@@ -480,7 +366,7 @@
     <script src="assets/bootstrap/js/bootstrap-formhelpers.js"></script>
     <script src="assets/calender/lib/jquery-ui.min.js"></script>
 
-    <script src="js/loaderstf.js"></script>
+    <script src="js/loader2.js"></script>
     <script src="js/datepicker.js"></script>
 
 </body>

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package com.cohorts;
 
+import data.loadcohort;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -15,17 +16,25 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author EKaunda
+ * @author HSDSA
  */
-public class getCohortMonths extends HttpServlet {
+public class getCohort6Months extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
-            String data = "";
+             String data = "";
             Calendar cl = Calendar.getInstance();
 
             String year = "" + (cl.get(Calendar.YEAR));
@@ -42,15 +51,8 @@ public class getCohortMonths extends HttpServlet {
             }
             loadcohort lc = new loadcohort();
 
-                    data = "<li class='nav-item btn btn-primary p-0  mr-1 mb-1'><a class='nav-link active'data-toggle='tab' data-target='#nav-home'>Add New</a></li>"
-                    + "<li class='nav-item btn btn-primary p-0  mr-1 mb-1' data-cohortmonth='3m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-3months'><span class='hidden_id' data-mn='3m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>3m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -3) +")</span></a></li>"
-                    + "<li class='nav-item btn btn-primary  p-0  mr-1 mb-1' data-cohortmonth='6m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-6months'><span class='hidden_id' data-mn='6m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>6m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -6) +")</span></a></li>"
-                    + "<li class='nav-item btn btn-primary p-0  mr-1 mb-1'  data-cohortmonth='12m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-12months'><span class='hidden_id' data-mn='12m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>12m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -12) +")</span></a></li>"
-                    + "<li class='nav-item btn btn-primary p-0 mr-1 mb-1'  data-cohortmonth='24m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-24months'><span class='hidden_id' data-mn='24m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>24m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -24) +")</span></a></li>";
-            if (cohorttype.equalsIgnoreCase("art")) {
-            data += "<li class='nav-item btn btn-primary p-0 mr-1 mb-1' data-cohortmonth='36m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-36months'   data-mn='36m' ><span class='hidden_id' data-mn='36m' onclick='loadcohorts();hiddenelements();isdisplayindicators();'>36m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -36) +")</span></a></li>";
-            }
-
+                    data = "<input type='text' readonly data-cohortmonth='6m' onchange(loadcohorts();hiddenelements();isdisplayindicators();) value='6m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -6) +")'/>";
+            
             out.println(data);
         }
     }
@@ -62,7 +64,7 @@ public class getCohortMonths extends HttpServlet {
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @thprows IOException if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
