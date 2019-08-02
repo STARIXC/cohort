@@ -186,13 +186,13 @@ function createdynamicinputs() {
 
 
     $(document).ready(function () {
-        $.getJSON("stfdefaulter.json", function (result) {
+        $.getJSON("combinedindicators.json", function (result) {
             var table = "";
             var row1 = "";
             var row2 = "";
             var count = 1;
+            //var cohortmonth = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
             var currentcohort = $("#cohortttype").val().toUpperCase();
-            var cohortmn=$("#cohortmonth").val();
             for (a = 0; a < result.length; a++) {
 
                 if (result[a].category === currentcohort) {
@@ -245,7 +245,9 @@ function createdynamicinputs() {
                     }
 
 
-                    row2 += "<td class='" + tdclass + "' colspan='" + colspan + "' > <div class='control-group' > <label> " + label + " </label> <div class='controls'> <input   required='true' onkeypress='return numbers(event);' " + isreadonly + "  " + tabindex + " onblur=\"" + onblur + "\" type='tel' maxlength='4' min ='" + minimum + "' max='" + maximum + "'  name='" + indicatorid + "' id='" + indicatorid + "' class='form-control inputs'> </div> </div> </td> ";
+                    row2 += "<td class='" + tdclass + "' colspan='" + colspan + "' >"
+                            + " <div class='control-group' > <label> " + label + " </label> "
+                            + "<div class='controls'> <input   required='true' onkeypress='return numbers(event);' " + isreadonly + "  " + tabindex + " onblur=\"" + onblur + "\" type='tel' maxlength='4' min ='" + minimum + "' max='" + maximum + "'  name='" + indicatorid + "' id='" + indicatorid + "' class='form-control inputs'> </div> </div> </td> ";
                     //IndicatorID	Age	IndicatorName	Level	datainputtype	Min	Max	onblur	onkeypress	Class	Required
 
 
@@ -254,13 +256,17 @@ function createdynamicinputs() {
             }
             row2 += " </tr> ";
 
+            $("#dynamicindicators-3m").html(row2);
+            $("#dynamicindicators-6m").html(row2);
+            $("#dynamicindicators-12m").html(row2);
+            $("#dynamicindicators-24m").html(row2);
+            $("#dynamicindicators-36m").html(row2);
             //alert(row2);
-            if
-            $("#dynamicindicators").html(row2);
-            //$("#dynamicindicators-6m").html(row2);
-            //   $("#dynamicindicators-12m").html(row2);
-            // $("#dynamicindicators-24m").html(row2);
-            // $("#dynamicindicators-36m").html(row2);
+
+
+
+            // 
+            // 
             // alert(result[0].IndicatorName);
         });// ned of input field loading
 
@@ -400,35 +406,94 @@ function cohortmonths() {
     var month = $("#month").val();
     var cohorttype = $("#cohortttype").val();
     $.ajax({
-        url: 'getCohortMonth?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        url: 'getCohortMonths?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
         type: 'post',
         dataType: 'html',
         success: function (data) {
 
-            $("#cohortmonth").html(data);
-            //$("#nav-pills").html(data);
+            $("#nav-pills").html(data);
 
         }
     });
 }
 cohortmonths();
 
-function displayTabs() {
-    var cohortmonth = $("#cohortmonth").val();
+function cohortmonth(cmonth) {
+if(cmonth==="3m"){
+    var year = $("#year").val();
+    var month = $("#month").val();
+    var cohorttype = $("#cohortttype").val();
     $.ajax({
-        url: 'getTabs?cm=' + cohortmonth ,
+        url: 'getCohort3Months?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
         type: 'post',
         dataType: 'html',
         success: function (data) {
 
-            //$("#cohortmonth").html(data);
-            $("#nav-pills").html(data);
+            $("#cohortmonth").html(data);
 
         }
     });
+}else if(cmonth==="6m"){
+    var year = $("#year").val();
+    var month = $("#month").val();
+    var cohorttype = $("#cohortttype").val();
+    $.ajax({
+        url: 'getCohort6Months?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        type: 'post',
+        dataType: 'html',
+        success: function (data) {
 
+            $("#cohortmonth").html(data);
+
+        }
+    });
+}else if(cmonth==="12m"){
+    var year = $("#year").val();
+    var month = $("#month").val();
+    var cohorttype = $("#cohortttype").val();
+    $.ajax({
+        url: 'getCohort12Months?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        type: 'post',
+        dataType: 'html',
+        success: function (data) {
+
+            $("#cohortmonth").html(data);
+
+        }
+    });
+}else if(cmonth==="24m"){
+    var year = $("#year").val();
+    var month = $("#month").val();
+    var cohorttype = $("#cohortttype").val();
+    $.ajax({
+        url: 'getCohort24Months?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        type: 'post',
+        dataType: 'html',
+        success: function (data) {
+
+            $("#cohortmonth").html(data);
+
+        }
+    });
+}else if(cmonth==="36m"){
+    var year = $("#year").val();
+    var month = $("#month").val();
+    var cohorttype = $("#cohortttype").val();
+    $.ajax({
+        url: 'getCohort36Months?yr=' + year + "&mn=" + month + "&ct=" + cohorttype,
+        type: 'post',
+        dataType: 'html',
+        success: function (data) {
+
+            $("#cohortmonth").html(data);
+
+        }
+    });
 }
-displayTabs();
+    
+}
+cohortmonth();
+
 function clearfields(indics) {
 
     var ct = $("#cohortttype").val();
@@ -719,42 +784,31 @@ function hiddenelements() {
 }
 
 
-function isdisplayindicators()
-{
-    var yr = $("#year").val();
-    var mn = $("#month").val();
-    //var cm = $("#nav-pills li > a.nav-link.active > span.hidden_id").data("mn");
-    var cm = $("#cohortmonth").val();
-    var fc = $("#facilityname").val();
+ function isdisplayindicators()
+            {
+                var yr = $("#year").val();
+                var mn = $("#month").val();
+                var cm = $("#cohortmonth").val();
+                var fc = $("#facilityname").val();
 
-    if (yr !== '' && mn !== '' && cm !== '' && fc !== '' && fc !== 'Select Facility')
-    {
+                if (yr !== '' && mn !== '' && cm !== '' && fc !== '' && fc !== 'Select Facility')
+                {
+                    // display facility name
+                    $("#dynamicindicators-3m").show();
+                    $("#dynamicindicators-6m").show();
+                    $("#dynamicindicators-12m").show();
+                    $("#dynamicindicators-24m").show();
+                     $("#dynamicindicators-36m").show();
+               } else
+                {
+                    $("#dynamicindicators-3m").hide();
+                    $("#dynamicindicators-6m").hide();
+                    $("#dynamicindicators-12m").hide();
+                    $("#dynamicindicators-24m").hide();
+                    $("#dynamicindicators-36m").hide();
+                    //        
+                }
 
-        if (cm === '3m') {
-            $("#dynamicindicators").show();
-        } else if (cm === '6m') {
-            $("#dynamicindicators-6m").show();
-        } else if (cm === '12m') {
-            $("#dynamicindicators-12m").show();
-        } else if (cm === '24m') {
-            $("#dynamicindicators-24m").show();
-        } else {
-            $("#dynamicindicators-36m").show();
-
-        }
-
-
-
-
-    } else
-    {
-        $("#dynamicindicators").hide();
-        // $("#dynamicindicators-6m").hide();
-        // $("#dynamicindicators-12m").hide();
-        //("#dynamicindicators-24m").hide();
-        // $("#dynamicindicators-36m").hide();
-        //        
-    }
 
 
 }
