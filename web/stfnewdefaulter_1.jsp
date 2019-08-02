@@ -125,25 +125,51 @@
                             </nav>
 
 
-                            <form class="tab-content weeklydataform " id="nav-tabContent" onsubmit="return validatedata();" action="multisave" method="post" >
+                            <div class="tab-content weeklydataform " id="nav-tabContent" >
 
                                 <div class="tab-pane fade show active" id="nav-home">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">Enter New Record</h6>
                                     <div class="text-muted pl-5 pt-3 bg-light">
                                         <div class="row offset-0 p-2">
+                                            <div class="col-md-12">
+                        <p>This  application is created for aiding users in collecting data for the MCA/ART Cohort Analysis. One is expected to enter data per facility.</p>
+                        <h3>Indicators</h3>
+                        <p>The specific indicators that one should enter data for are;</p>
+                        <ul>
 
+
+                            <li>A. Enrolled into cohort	</li>														
+                            <li>B. Transfers In(T.I)		</li>													
+                            <li>C. Transfers Out(T.O)		</li>													
+                            <li>D. Net Cohort(A+B-C)		</li>													
+                            <li>E. Defaulters			</li>												
+                            <li>F. Lost to follow up (LTFU)		</li>													
+                            <li>G. Reported Dead			</li>												
+                            <li>H. Stopped				</li>											
+                            <li>I. Alive and Active on Treatment</li>															
+                            <li>J. Viral Load Collected		</li>													
+                            <li>K. Virally suppressed (VL<1000)</li>
+
+
+
+                        </ul>
+                        <h3> Facilities</h3>
+                        <p> The selected cohort type(MCA/ART) determines the list of facilities availed for choosing </p>
+                   
                                         </div>
-
+                                        </div>
                                     </div>
 
                                 </div>
+                                
                                 <div class="tab-pane fade" id="nav-3months">
+                                    
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
                                     <div class="text-muted pl-5 pt-3 bg-light">
                                         <center>
                                             <div id="loading" class="alert-success"></div>
                                         </center>
-
+                                        <form onsubmit="return validatedata();" action="multisave" method="post">
 
 
                                         <div class="row offset-0 p-2">
@@ -269,7 +295,7 @@
 
                                             </div>
                                         </div>
-
+                                        </form>
                                     </div>
                                     <div class="text-muted p-3 border border-gray">
                                         <table class='table table-striped table-bordered' onload="loadcohorts();hiddenelements();isdisplayindicators();" id="dynamicindicators-3m" style="display:none;" > 
@@ -309,8 +335,8 @@
                                         </table>
                                     </div>
                                 </div>
-
-                            </form>
+                                                   
+                            </div>
 
                         </div>
                     </div>
