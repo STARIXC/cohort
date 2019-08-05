@@ -309,10 +309,10 @@ function getFacilitiesJson() {
         type: 'post',
         dataType: 'html',
         success: function (data) {
-            $("#facilityname").html(data);
+            $(".facilityname").html(data);
             $(document).ready(function () {
 
-                $('#facilityname').select2();
+                $('.facilityname').select2();
             });
         }});
 
