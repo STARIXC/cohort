@@ -87,7 +87,8 @@ String error;
          "9_child","9_tl","10_adult","10_child","10_tl","11_adult","11_child","11_tl"};
      String artparameters2[]={"13_adult","13_child","13_tl","14_adult","14_child","14_tl","15_adult","15_child","15_tl","16_adult","16_child","16_tl","17_adult","17_child","17_tl","18_adult","18_child","18_tl","19_adult","19_child","19_tl","20_adult","20_child","20_tl","21_adult","21_child","21_tl","22_adult","22_child","22_tl","23_adult","23_child","23_tl"};
    String pmtctparameters[]={"1_kp","1_np","1_tl","2_kp","2_np","2_tl","3_kp","3_np","3_tl","4_kp","4_np","4_tl","5_kp","5_np","5_tl","6_kp","6_np","6_tl","7_kp","7_np","7_tl","8_kp","8_np","8_tl","9_kp","9_np","9_tl","10_kp","10_np","10_tl","11_kp","11_np","11_tl"};
-    
+   String defparameters[]={"1_np","1_def","1_tl","2_def","2_np","2_tl","3_def","3_np","3_tl","4_def","4_np","4_tl","5_def","5_np","5_tl","6_def","6_np","6_tl","7_def","7_np","7_tl","8_def","8_np","8_tl","9_def","9_np","9_tl","10_def","10_np","10_tl","11_def","11_np","11_tl","12_def","12_np","12_tl"};
+   
 ArrayList artvals=new ArrayList();
 ArrayList pmtctvals=new ArrayList();
 if(tablename.equals("art_cohort")){
