@@ -28,6 +28,10 @@
         <servlet-name>getCohort36Months</servlet-name>
         <servlet-class>com.cohorts.getCohort36Months</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getCohortTypes</servlet-name>
+        <servlet-class>com.cohorts.getCohortTypes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loadfacility</servlet-name>
         <url-pattern>/loadfacility</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>getCohort36Months</servlet-name>
         <url-pattern>/getCohort36Months</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getCohortTypes</servlet-name>
+        <url-pattern>/getCohortTypes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

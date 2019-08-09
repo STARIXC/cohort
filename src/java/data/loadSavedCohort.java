@@ -50,16 +50,24 @@ public class loadSavedCohort extends HttpServlet {
             JSONArray ar = new JSONArray();
 
             String tablename = "";
-            if (ct.equals("art")) {
-                tablename = "art_cohort";
-            } else if (ct.equals("pmtct")) {
-                tablename = "pmtct_cohort";
-            } else if (ct.equals("stf")) {
-                tablename = "stf_cohort";
-            } else {
-                tablename = "new_defaulter_cohort";
+            switch (ct) {
+                case "art":
+                    tablename = "art_cohort";
+                    break;
+//code to be executed if all the conditions are false
+                case "pmtct":
+                    tablename = "pmtct_cohort";
+                    break;
+                case "stf":
+                    tablename = "stf_cohort";
+                    break;
+                case "defaulter":
+                    tablename = "new_defaulter_cohort";
+                    break;
+                default:
+                    tablename = "art_cohort";
+                    break;
             }
-//code to be executed if all the conditions are false  
 
             // id=year+"_"+newmn+"_"+subpartnerID;//*******************************
             String sql = "";
@@ -75,19 +83,13 @@ public class loadSavedCohort extends HttpServlet {
                 } else if (ct.equalsIgnoreCase("pmtct")) {
                     sql = "select  id, indicator ,IFNULL(kp_" + cm + ",'') as kp_" + cm + " , IFNULL(np_" + cm + ",'') as np_" + cm + " ,IFNULL(tl_" + cm + ",'') as tl_" + cm + " ";
                 } else if (ct.equalsIgnoreCase("stf")) {
-
                     sql = "select id, indicator, IFNULL(adult_" + cm + ",'0') as adult_" + cm + " , IFNULL(ayp_" + cm + ",'0') as ayp_" + cm + ", IFNULL(tl_" + cm + ",'0') as tl_" + cm + "  ";
-
-                } else {
-                    sql = "select  id, indicator ,IFNULL(kp_" + cm + ",'') as kp_" + cm + " , IFNULL(np_" + cm + ",'') as np_" + cm + " ,IFNULL(tl_" + cm + ",'') as tl_" + cm + " ";
-
+                } else if (ct.equalsIgnoreCase("defaulter"))   {
+                   sql = "select  id, indicator ,IFNULL(np_" + cm + ",'') as np_" + cm + " , IFNULL(def_" + cm + ",'') as def_" + cm + " ,IFNULL(tl_" + cm + ",'') as tl_" + cm + " ";
                 }
-
                 sql += " from " + tablename + " where mflcode='" + mflcode + "' and yearmonth='" + yr + mn + "' and (indicator!='12' ) and (indicator!='24' ) order by indicator ";
-
                 conn.rs = conn.st0.executeQuery(sql);
                 System.out.println("" + sql);
-
                 while (conn.rs.next()) {
 
                     JSONObject jo = new JSONObject();

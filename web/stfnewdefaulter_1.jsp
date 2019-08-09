@@ -130,13 +130,105 @@
                                 </ul>
                             </nav>
 
+                                <form>
 
                             <div class="tab-content weeklydataform " id="nav-tabContent" >
-
                                 <div class="tab-pane fade show active" id="nav-home">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">Enter New Record</h6>
                                     <div class="text-muted pl-5 pt-3 bg-light">
-                                        <div class="row offset-0 p-2">
+                                         <div class="row offset-0 p-2">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Cohort Type </label>
+                                                        <select required="true" onchange="updatecohorttypes();"  name="cohortttypemain" id="cohortttypemain" class="form-control" >
+
+                                                           <option value="">Select Cohort Type</option>
+                                                            <option value="art">ACA</option>
+                                                            <option value="pmtct">MCA</option>
+                                                            <option value="stf">STF</option>
+                                                            <option value="defaulter">NEW AND DEFAULTER</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Reporting year </label> 
+                                                        <select required="true" onclick="updateyear();"   name="yearmain" id="yearmain" class="form-control" >
+                                                            <option value=''>Select Year</option>
+                                                            <%
+                                                                if (curmn >= 10) {
+                                                                    curyear = curyear + 1;
+                                                                }
+
+                                                                for (int a = 2017; a <= curyear; a++) {
+
+                                                                    if (session.getAttribute("yr") != null) {
+
+                                                                        if (new Integer(session.getAttribute("yr").toString()) == a) {
+                                                                            System.out.println(" Mwaaka ni " + session.getAttribute("yr") + " vs " + a);
+                                                                            out.println("<option selected value='" + a + "'>" + a + "</option>");
+                                                                        } else {
+                                                                            out.println("<option value='" + a + "'>" + a + "</option>");
+                                                                        }
+
+                                                                    } else {
+
+                                                                        out.println("<option value='" + a + "'>" + a + "</option>");
+
+                                                                    }
+                                                            %>
+
+
+                                                            <%
+                                                                }
+
+                                                            %>
+
+
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Reporting Month </label>
+                                                        <select required="true"    name="monthmain" id="monthmain" onchange="updatemonth();" class="form-control" >
+                                                            <option>Select Month</option>
+                                                            <option value="01">January</option>
+                                                            <option value="02">February</option>
+                                                            <option value="03">March</option>
+                                                            <option value="04">April</option>
+                                                            <option value="05">May</option>
+                                                            <option value="06">June</option>
+                                                            <option value="07">July</option>
+                                                            <option value="08">August</option>
+                                                            <option value="09">September</option>
+                                                            <option value="10">October</option>
+                                                            <option value="11">November</option>
+                                                            <option value="12">December</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label> <font color="red"><b>*</b></font>  Facility Name:</label>
+                                                        <select required="true"  onchange="updatefacility();"   name="facilitynamemain" id="facilitynamemain" class="form-control" >
+                                                            <option>Select Facility Name</option>
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                                            <hr>
+                                        <div class="  row offset-0 p-2">
                                             <div class="col-md-12">
                                                 <p>This  application is created for aiding users in collecting data for the MCA/ART Cohort Analysis. One is expected to enter data per facility.</p>
                                                 <h3>Indicators</h3>
@@ -167,8 +259,8 @@
                                     </div>
 
                                 </div>
-
-                                <div class="tab-pane fade" id="nav-3months">
+                                                                                
+                                <div class=" tab-pane fade" id="nav-3months">
 
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
                                     <div class="text-muted pl-3 pt-3 bg-light">
@@ -183,7 +275,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                        <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
+                                                        <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype-3" id="cohortttype-3" class="form-control">
 
                                                             <% if (session.getAttribute("ct") != null) {
                                                                     if (session.getAttribute("ct").equals("art")) {
@@ -202,11 +294,7 @@
 
                                                                 } else {%>
 
-                                                            <option value="">Select Cohort Type</option>
-                                                            <option value="art">ACA</option>
-                                                            <option value="pmtct">MCA</option>
-                                                            <option value="stf">STF</option>
-                                                            <option value="defaulter">NEW AND DEFAULTER</option>
+                                                            
 
                                                             <%}%>
                                                         </select>
@@ -510,7 +598,7 @@
                                 </div>
 
                             </div>
-
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -538,7 +626,7 @@
     <script src="assets/offcanvas.js"></script>
     <script src="assets/bootstrap/js/bootstrap-formhelpers.js"></script>
     <script src="assets/calender/lib/jquery-ui.min.js"></script>
-
+    <script src="js/updatescript.js"></script>
     <script src="js/loader2.js"></script>
     <script src="js/datepicker.js"></script>
 
