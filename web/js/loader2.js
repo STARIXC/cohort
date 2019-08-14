@@ -285,73 +285,7 @@ function cohortmonths() {
 }
 cohortmonths();
 
-function cohortmonth(cmonth) {
-  if (cmonth === "3m") {
-    var year = $("#year").val();
-    var month = $("#month").val();
-    var cohorttype = $("#cohortttype").val();
-    $.ajax({
-      url: "getCohort3Months?yr=" + year + "&mn=" + month + "&ct=" + cohorttype,
-      type: "post",
-      dataType: "html",
-      success: function(data) {
-        $("#cohortmonth").html(data);
-      }
-    });
-  } else if (cmonth === "6m") {
-    var year = $("#year").val();
-    var month = $("#month").val();
-    var cohorttype = $("#cohortttype").val();
-    $.ajax({
-      url: "getCohort6Months?yr=" + year + "&mn=" + month + "&ct=" + cohorttype,
-      type: "post",
-      dataType: "html",
-      success: function(data) {
-        $("#cohortmonth").html(data);
-      }
-    });
-  } else if (cmonth === "12m") {
-    var year = $("#year").val();
-    var month = $("#month").val();
-    var cohorttype = $("#cohortttype").val();
-    $.ajax({
-      url:
-        "getCohort12Months?yr=" + year + "&mn=" + month + "&ct=" + cohorttype,
-      type: "post",
-      dataType: "html",
-      success: function(data) {
-        $("#cohortmonth").html(data);
-      }
-    });
-  } else if (cmonth === "24m") {
-    var year = $("#year").val();
-    var month = $("#month").val();
-    var cohorttype = $("#cohortttype").val();
-    $.ajax({
-      url:
-        "getCohort24Months?yr=" + year + "&mn=" + month + "&ct=" + cohorttype,
-      type: "post",
-      dataType: "html",
-      success: function(data) {
-        $("#cohortmonth").html(data);
-      }
-    });
-  } else if (cmonth === "36m") {
-    var year = $("#year").val();
-    var month = $("#month").val();
-    var cohorttype = $("#cohortttype").val();
-    $.ajax({
-      url:
-        "getCohort36Months?yr=" + year + "&mn=" + month + "&ct=" + cohorttype,
-      type: "post",
-      dataType: "html",
-      success: function(data) {
-        $("#cohortmonth").html(data);
-      }
-    });
-  }
-}
-cohortmonth();
+
 
 function clearfields(indics) {
   var ct = $("#cohortttype").val();
