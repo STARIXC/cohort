@@ -130,146 +130,92 @@
                                 </ul>
                             </nav>
 
-                                <form>
 
-                            <div class="tab-content weeklydataform " id="nav-tabContent" >
+
+                            <div class="tab-content" id="nav-tabContent" >
+
                                 <div class="tab-pane fade show active" id="nav-home">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">Enter New Record</h6>
                                     <div class="text-muted pl-5 pt-3 bg-light">
-                                       <div class="row offset-0 p-2">
+                                        <div class="row offset-0 p-2">
 
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();loadcohorts();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
-                                                                        <% if (session.getAttribute("ct") != null) {
-                                                                                if (session.getAttribute("ct").equals("art")) {
-                                                                                    out.println("<option selected value='art'>ACA</option>");
-                                                                                    out.println("<option value='pmtct'>MCA</option>");
-                                                                                    out.println("<option value='stf'>STF</option>");
-                                                                                    out.println("<option value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                                } else if (session.getAttribute("ct").equals("pmtct")) {
-                                                                                    out.println("<option  value='art'>ACA</option>");
-                                                                                    out.println("<option selected value='pmtct'>MCA</option>");
-                                                                                    out.println("<option value='stf'>STF</option>");
-                                                                                    out.println("<option value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                                } else if (session.getAttribute("ct").equals("stf")) {
-                                                                                    out.println("<option  value='art'>ACA</option>");
-                                                                                    out.println("<option  value='pmtct'>MCA</option>");
-                                                                                    out.println("<option selected value='stf'>STF</option>");
-                                                                                    out.println("<option value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                                } else if (session.getAttribute("ct").equals("defaulter")) {
-                                                                                    out.println("<option  value='art'>ACA</option>");
-                                                                                    out.println("<option  value='pmtct'>MCA</option>");
-                                                                                    out.println("<option  value='stf'>STF</option>");
-                                                                                    out.println("<option selected value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                                }
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><font color="red"><b>*</b></font> Cohort Type </label>
+                                                    <select  required="true"  onchange="loadctype();cohortmonths();getFacilitiesJson();"name="cohortttypemain" id="cohortttypemain" class="form-control" >
+                                                        <option value="">Select Cohort Type</option>
+                                                        <option value="art">ACA</option>
+                                                        <option value="pmtct">MCA</option>
+                                                        <option value="stf">STF</option>
+                                                        <option value="defaulter">NEW AND DEFAULTER</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
 
-                                                                                } else {%>
-                                                                        <option value="">Select Cohort Type</option>
-                                                                        <option value="art">ACA</option>
-                                                                        <option value="pmtct">MCA</option>
-                                                                        <option value="stf">STF</option>
-                                                                        <option value="defaulter">NEW AND DEFAULTER</option>
+                                                <div class="form-group">
+                                                    <label><font color="red"><b>*</b></font> Reporting year </label> 
+                                                    <select required="true" onclick="loadry();cohortmonths();"   name="ryear" id="ryear" class="form-control" >
+                                                        <option value=''>Select Year</option>
+                                                        <%                                                                            if (curmn >= 10) {
+                                                                curyear = curyear + 1;
+                                                            }
 
+                                                            for (int a = 2017; a <= curyear; a++) {
+                                                                out.println("<option value='" + a + "'>" + a + "</option>");
+                                                            }
+                                                        %>
+                                                    </select>
+                                                    <input type="hidden"  name ="rowid" id="rowid"  />
+                                                </div>
 
-                                                                        <%}%>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><font color="red"><b>*</b></font> Reporting Month </label>
+                                                    <select required="true"    name="montht" id="montht" onchange="cohortmonths();loadmn()" class="form-control" >
+                                                        <option>Select Month</option>
+                                                        <option value="01">January</option>
+                                                        <option value="02">February</option>
+                                                        <option value="03">March</option>
+                                                        <option value="04">April</option>
+                                                        <option value="05">May</option>
+                                                        <option value="06">June</option>
+                                                        <option value="07">July</option>
+                                                        <option value="08">August</option>
+                                                        <option value="09">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
 
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--      <div class="col-md-6">
+  
+                                                      <div class="form-group">
+                                                          <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
+                                                          <select required="true" onchange="loadcohorts();hiddenelements();isdisplayindicators();"  name="cohortmonth" id="cohortmonth" class="form-control" >
+                                                              <option value=''>Select reporting year and month</option>
+  
+  
+                                                          </select>
+                                                      </div>
+  
+                                                  </div>-->
+                                            <div class="col-md-6">
 
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label> <font color="red"><b>*</b></font>  Facility Name:</label>
+                                                    <select required="true"  onchange="updatefacility();"   name="facilitynamet" id="facilitynamet" class="form-control" >
+                                                        <option>Select Facility Name</option>
 
-                                                                <div class="form-group">
-                                                                    <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                                    <select required="true" onclick="getmonth();cohortmonths();loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
-                                                                        <option value=''>Select Year</option>
-                                                                        <%
+                                                    </select>
+                                                </div>
 
-                                                                            
-
-                                                                            if (curmn >= 10) {
-                                                                                curyear = curyear + 1;
-                                                                            }
-
-                                                                            for (int a = 2017; a <= curyear; a++) {
-
-                                                                                if (session.getAttribute("yr") != null) {
-
-                                                                                    if (new Integer(session.getAttribute("yr").toString()) == a) {
-                                                                                        System.out.println(" Mwaaka ni " + session.getAttribute("yr") + " vs " + a);
-                                                                                        out.println("<option selected value='" + a + "'>" + a + "</option>");
-                                                                                    } else {
-                                                                                        out.println("<option value='" + a + "'>" + a + "</option>");
-                                                                                    }
-
-                                                                                } else {
-
-                                                                                    out.println("<option value='" + a + "'>" + a + "</option>");
-
-                                                                                }
-                                                                        %>
-
-
-                                                                        <%
-                                                                            }
-
-                                                                        %>
-
-
-
-                                                                    </select>
-                                                                    <input type="hidden"  name ="rowid" id="rowid"  />
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label><font color="red"><b>*</b></font> Reporting Month </label>
-                                                                    <select required="true"    name="month" id="month" onchange="cohortmonths();loadcohorts();isdisplayindicators();" class="form-control" >
-                                                                        <option>Select Month</option>
-                                                                        <option value="01">January</option>
-                                                                        <option value="02">February</option>
-                                                                        <option value="03">March</option>
-                                                                        <option value="04">April</option>
-                                                                        <option value="05">May</option>
-                                                                        <option value="06">June</option>
-                                                                        <option value="07">July</option>
-                                                                        <option value="08">August</option>
-                                                                        <option value="09">September</option>
-                                                                        <option value="10">October</option>
-                                                                        <option value="11">November</option>
-                                                                        <option value="12">December</option>
-
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-
-                                                                <div class="form-group">
-                                                                    <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
-                                                                    <select required="true" onchange="loadcohorts();hiddenelements();isdisplayindicators();"  name="cohortmonth" id="cohortmonth" class="form-control" >
-                                                                        <option value=''>Select reporting year and month</option>
-
-
-                                                                    </select>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-md-6">
-
-                                                                <div class="form-group">
-                                                                    <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                                    <select required="true"  onchange="loadcohorts(); isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
-                                                                        <option>Select Facility Name</option>
-
-                                                                    </select>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                            <hr>
+                                            </div>
+                                        </div>
+                                        <hr>
                                         <div class="  row offset-0 p-2">
                                             <div class="col-md-12">
                                                 <p>This  application is created for aiding users in collecting data for the MCA/ART Cohort Analysis. One is expected to enter data per facility.</p>
@@ -301,7 +247,7 @@
                                     </div>
 
                                 </div>
-                                                                                
+
                                 <div class=" tab-pane fade" id="nav-3months">
 
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
@@ -309,342 +255,108 @@
                                         <center>
                                             <div id="loading" class="alert-success"></div>
                                         </center>
-                                        <form onsubmit="return validatedata();" action="multisave" method="post">
-
-
-                                            <div class="row offset-0 p-2">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                             <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
-
-                                                            <% if (session.getAttribute("ct") != null) {
-                                                                    if (session.getAttribute("ct").equals("art")) {
-                                                                        out.println("<option selected value='art'>ACA</option>");
-                                                                        out.println("<option value='pmtct'>MCA</option>");
-                                                                    } else if (session.getAttribute("ct").equals("pmtct")) {
-                                                                        out.println("<option  value='art'>ACA</option>");
-                                                                        out.println("<option selected value='pmtct'>MCA</option>");
-                                                                    } else if (session.getAttribute("ct").equals("stf")) {
-                                                                        out.println("<option selected value='stf'>STF</option>");
-                                                                        out.println("<option value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                    } else if (session.getAttribute("ct").equals("defaulter")) {
-                                                                        out.println("<option  value='stf'>STF</option>");
-                                                                        out.println("<option selected value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                    }
-
-                                                                } else {%>
-
-                                                            <option value="">Select Cohort Type</option>
-                                                            <option value="art">ACA</option>
-                                                            <option value="pmtct">MCA</option>
-                                                            <option value="stf">STF</option>
-                                                            <option value="defaulter">NEW AND DEFAULTER</option>
-
-                                                            <%}%>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                        <select required="true" onclick="getmonth();cohortmonths();loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
-                                                            <option value=''>Select Year</option>
-                                                            <%
-                                                                if (curmn >= 10) {
-                                                                    curyear = curyear + 1;
-                                                                }
-
-                                                                for (int a = 2017; a <= curyear; a++) {
-
-                                                                    if (session.getAttribute("yr") != null) {
-
-                                                                        if (new Integer(session.getAttribute("yr").toString()) == a) {
-                                                                            System.out.println(" Mwaaka ni " + session.getAttribute("yr") + " vs " + a);
-                                                                            out.println("<option selected value='" + a + "'>" + a + "</option>");
-                                                                        } else {
-                                                                            out.println("<option value='" + a + "'>" + a + "</option>");
-                                                                        }
-
-                                                                    } else {
-
-                                                                        out.println("<option value='" + a + "'>" + a + "</option>");
-
-                                                                    }
-                                                            %>
-
-
-                                                            <%
-                                                                }
-
-                                                            %>
 
 
 
-                                                        </select>
-                                                    </div>
+                                        <div class="row offset-0 p-2">
 
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><font color="red"><b>*</b></font> Reporting Month </label>
-                                                        <select required="true"    name="month" id="month" onchange="cohortmonths();isdisplayindicators();" class="form-control" >
-                                                            <option>Select Month</option>
-                                                            <option value="01">January</option>
-                                                            <option value="02">February</option>
-                                                            <option value="03">March</option>
-                                                            <option value="04">April</option>
-                                                            <option value="05">May</option>
-                                                            <option value="06">June</option>
-                                                            <option value="07">July</option>
-                                                            <option value="08">August</option>
-                                                            <option value="09">September</option>
-                                                            <option value="10">October</option>
-                                                            <option value="11">November</option>
-                                                            <option value="12">December</option>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><font color="red"><b>*</b></font> Cohort Type </label>
+                                                    <select  onfocus='createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();' required="true"  name="cohorttype" id="cohorttype" class="form-control" >
 
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
-                                                        <Input type="text" readonly onchange="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth-3" class="form-control" data-cohortmonth='3m'value='3m' >
-
-
-
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-12">
-
-                                                    <div class="form-group">
-                                                        <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                        <select required="true"  onchange="loadcohorts();isdisplayindicators();"   name="facilityname" id="facilityname-3" class="form-control" >
-                                                            <option>Select Facility Name</option>
-
-                                                        </select>
-                                                    </div>
-
+                                                    </select>
                                                 </div>
                                             </div>
-                                               <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered' onload="loadcohorts();hiddenelements();isdisplayindicators();" id="dynamicindicators-3m" style="display:none;" > 
+                                            <div class="col-md-6">
 
-                                            <!------INDICATORS----->
-                                            <tr ><td class='col-xs-12' colspan='3'>
-                                                    <div class='control-group'>
-
-
+                                                <div class="form-group">
+                                                    <label><font color="red"><b>*</b></font> Reporting year </label> 
+                                                    <select required="true" onclick="loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
+                                                        <option value=''>Select Year</option>
 
 
-
-                                                    </div></td>
-                                            </tr>                                 
-
-
-                                        </table>
-                                        <table class="table table-striped table-bordered">
-                                            <tr><td colspan="3" class="col-xs-12">               
-                                                    <div class="control-group col-xs-12">
-                                                        <div class="alert-info">Note: Please enter all the required data.</div>
-                                                        <br/>
-                                                        <div class="controls">
-                                                            <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
-
-                                                        </div>
-                                                        <div class="controls">
-                                                            <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
-                                                                UPDATE 
-                                                            </button>
-                                                        </div>
-
-
-                                                    </div>
-                                                </td></tr>
-
-                                        </table>
-                                    </div>                
-                                        </form>
-                                    </div>
-                                 
-                                </div>
-                                <!--six months cohort--> 
-                                <div class="tab-pane fade" id="nav-6months">
-
-                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">6 Months Records</h6>
-                                    <div class="text-muted pl-3 pt-3 bg-light">
-                                        <center>
-                                            <div id="loading" class="alert-success"></div>
-                                        </center>
-                                        <form onsubmit="return validatedata();" action="multisave" method="post">
-
-
-                                            <div class="row offset-0 p-2">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                        <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();cohortmonths();isdisplayindicators();' required="true"  name="cohortttype" id="cohortttype" class="form-control" >
-
-                                                            <% if (session.getAttribute("ct") != null) {
-                                                                    if (session.getAttribute("ct").equals("art")) {
-                                                                        out.println("<option selected value='art'>ACA</option>");
-                                                                        out.println("<option value='pmtct'>MCA</option>");
-                                                                    } else if (session.getAttribute("ct").equals("pmtct")) {
-                                                                        out.println("<option  value='art'>ACA</option>");
-                                                                        out.println("<option selected value='pmtct'>MCA</option>");
-                                                                    } else if (session.getAttribute("ct").equals("stf")) {
-                                                                        out.println("<option selected value='stf'>STF</option>");
-                                                                        out.println("<option value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                    } else if (session.getAttribute("ct").equals("defaulter")) {
-                                                                        out.println("<option  value='stf'>STF</option>");
-                                                                        out.println("<option selected value='defaulter'>NEW AND DEFAULTER</option>");
-                                                                    }
-
-                                                                } else {%>
-
-                                                            <option value="">Select Cohort Type</option>
-                                                            <option value="art">ACA</option>
-                                                            <option value="pmtct">MCA</option>
-                                                            <option value="stf">STF</option>
-                                                            <option value="defaulter">NEW AND DEFAULTER</option>
-
-                                                            <%}%>
-                                                        </select>
-                                                    </div>
+                                                    </select>
                                                 </div>
-                                                <div class="col-md-6">
 
-                                                    <div class="form-group">
-                                                        <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                        <select required="true" onclick="getmonth();cohortmonths();loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
-                                                            <option value=''>Select Year</option>
-                                                            <%
-                                                                if (curmn >= 10) {
-                                                                    curyear = curyear + 1;
-                                                                }
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><font color="red"><b>*</b></font> Reporting Month </label>
+                                                    <select required="true"    name="month" id="month" onchange="isdisplayindicators();" class="form-control" >
+                                                       
 
-                                                                for (int a = 2017; a <= curyear; a++) {
-
-                                                                    if (session.getAttribute("yr") != null) {
-
-                                                                        if (new Integer(session.getAttribute("yr").toString()) == a) {
-                                                                            System.out.println(" Mwaaka ni " + session.getAttribute("yr") + " vs " + a);
-                                                                            out.println("<option selected value='" + a + "'>" + a + "</option>");
-                                                                        } else {
-                                                                            out.println("<option value='" + a + "'>" + a + "</option>");
-                                                                        }
-
-                                                                    } else {
-
-                                                                        out.println("<option value='" + a + "'>" + a + "</option>");
-
-                                                                    }
-                                                            %>
-
-
-                                                            <%
-                                                                }
-
-                                                            %>
-
-
-
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><font color="red"><b>*</b></font> Reporting Month </label>
-                                                        <select required="true"    name="month" id="month" onchange="cohortmonths();isdisplayindicators();" class="form-control" >
-                                                            <option>Select Month</option>
-                                                            <option value="01">January</option>
-                                                            <option value="02">February</option>
-                                                            <option value="03">March</option>
-                                                            <option value="04">April</option>
-                                                            <option value="05">May</option>
-                                                            <option value="06">June</option>
-                                                            <option value="07">July</option>
-                                                            <option value="08">August</option>
-                                                            <option value="09">September</option>
-                                                            <option value="10">October</option>
-                                                            <option value="11">November</option>
-                                                            <option value="12">December</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
-                                                        <Input type="text" readonly onchange="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth-6" class="form-control" data-cohortmonth='6m'value='6m' >
-
-
-
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-12">
-
-                                                    <div class="form-group">
-                                                        <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                        <select required="true"  onchange="loadcohorts();isdisplayindicators();"   name="facilityname" id="facilityname-3" class="form-control" >
-                                                            <option>Select Facility Name</option>
-
-                                                        </select>
-                                                    </div>
-
+                                                    </select>
                                                 </div>
                                             </div>
-                                               <div class="text-muted p-3 border border-gray">
-                                        <table class='table table-striped table-bordered' onload="loadcohorts();hiddenelements();isdisplayindicators();" id="dynamicindicators-6m" style="display:none;" > 
+                                            <div class="col-md-6">
 
-                                            <!------INDICATORS----->
-                                            <tr ><td class='col-xs-12' colspan='3'>
-                                                    <div class='control-group'>
-
+                                                <div class="form-group">
+                                                    <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
+                                                    <Input type="text" readonly onchange="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth-3" class="form-control" data-cohortmonth='3m'value='3m' >
 
 
 
+                                                </div>
 
-                                                    </div></td>
-                                            </tr>                                 
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <label> <font color="red"><b>*</b></font>  Facility Name:</label>
+                                                    <select required="true"  onchange="loadcohorts();isdisplayindicators();"   name="facilityname" id="facilityname-3" class="form-control" >
+                                                        <option>Select Facility Name</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="text-muted p-3 border border-gray">
+                                            <table class='table table-striped table-bordered' onload="loadcohorts();hiddenelements();isdisplayindicators();" id="dynamicindicators-3m" style="display:none;" > 
+
+                                                <!------INDICATORS----->
+                                                <tr ><td class='col-xs-12' colspan='3'>
+                                                        <div class='control-group'>
 
 
-                                        </table>
-                                        <table class="table table-striped table-bordered">
-                                            <tr><td colspan="3" class="col-xs-12">               
-                                                    <div class="control-group col-xs-12">
-                                                        <div class="alert-info">Note: Please enter all the required data.</div>
-                                                        <br/>
-                                                        <div class="controls">
-                                                            <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
+
+
+
+                                                        </div></td>
+                                                </tr>                                 
+
+
+                                            </table>
+                                            <table class="table table-striped table-bordered">
+                                                <tr><td colspan="3" class="col-xs-12">               
+                                                        <div class="control-group col-xs-12">
+                                                            <div class="alert-info">Note: Please enter all the required data.</div>
+                                                            <br/>
+                                                            <div class="controls">
+                                                                <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
+
+                                                            </div>
+                                                            <div class="controls">
+                                                                <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
+                                                                    UPDATE 
+                                                                </button>
+                                                            </div>
+
 
                                                         </div>
-                                                        <div class="controls">
-                                                            <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
-                                                                UPDATE 
-                                                            </button>
-                                                        </div>
+                                                    </td></tr>
 
+                                            </table>
+                                        </div>                
 
-                                                    </div>
-                                                </td></tr>
-
-                                        </table>
-                                    </div>                
-                                        </form>
                                     </div>
+
                                 </div>
+
 
                             </div>
-                                </form>
+
                         </div>
                     </div>
                 </div>

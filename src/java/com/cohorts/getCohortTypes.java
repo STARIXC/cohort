@@ -32,52 +32,42 @@ public class getCohortTypes extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String data="";
-            String cohorttype = "art";
+            String data = "";
+            
             if (request.getParameter("ct") != null && !request.getParameter("ct").equals("")) {
-                cohorttype = request.getParameter("ct");
-                System.out.println(cohorttype);
+                String cohorttype = request.getParameter("ct");
+                if (cohorttype.equals("art")) {
+                    data = "<option selected value='art'>ACA</option>"
+                            + "<option value='pmtct'>MCA</option>"
+                            + "<option value='stf'>STF</option>"
+                            + "<option value='defaulter'>NEW AND DEFAULTER</option>";
+                } else if (cohorttype.equals("pmtct")) {
+                    data = "<option  value='art'>ACA</option>"
+                            + "<option selected value='pmtct'>MCA</option>"
+                            + "<option value='stf'>STF</option>"
+                            + "<option value='defaulter'>NEW AND DEFAULTER</option>";
+                } else if (cohorttype.equals("stf")) {
+                    data = "<option  value='art'>ACA</option>"
+                            + "<option value='pmtct'>MCA</option>"
+                            + "<option  selected value='stf'>STF</option>"
+                            + "<option value='defaulter'>NEW AND DEFAULTER</option>";
+                } else if (cohorttype.equals("defaulter")) {
+                    data = "<option  value='art'>ACA</option>"
+                            + "<option value='pmtct'>MCA</option>"
+                            + "<option value='stf'>STF</option>"
+                            + "<option selected value='defaulter'>NEW AND DEFAULTER</option>";
+                }
+
+            } else {
+                data = "<option  value=''>Select Cohort Type</option>"
+                        + "<option  value='art'>ACA</option>"
+                        + "<option value='pmtct'>MCA</option>"
+                        + "<option  selected value='stf'>STF</option>"
+                        + "<option value='defaulter'>NEW AND DEFAULTER</option>";
+
             }
-           
-            switch (cohorttype) {
-                case "art":
-                    data="<option value=''>Select Cohort Type</option>"+
-                            "<option value='art' selected>ACA</option>" +
-                            "<option value='pmtct'>MCA</option>" +
-                            "<option value='stf'>STF</option>" +
-                            "<option value='defaulter'>NEW AND DEFAULTER</option>";
-                    System.out.println(data);
-                    break;
-                case "pmtct":
-                    data="<option value=''>Select Cohort Type</option>"+
-                            "<option value='art' >ACA</option>" +
-                            "<option value='pmtct' selected>MCA</option>" +
-                            "<option value='stf'>STF</option>" +
-                            "<option value='defaulter'>NEW AND DEFAULTER</option>";
-                    break;
-                case "stf":
-                    data="<option value=''>Select Cohort Type</option>"+
-                            "<option value='art' >ACA</option>" +
-                            "<option value='pmtct' >MCA</option>" +
-                            "<option value='stf' selected>STF</option>" +
-                            "<option value='defaulter'>NEW AND DEFAULTER</option>";
-                    break;
-                case "defaulter":
-                    data="<option value=''>Select Cohort Type</option>"+
-                            "<option value='art' >ACA</option>" +
-                            "<option value='pmtct' >MCA</option>" +
-                            "<option value='stf' >STF</option>" +
-                            "<option value='defaulter' selected >NEW AND DEFAULTER</option>";
-                    break;
-                default:
-                    data="<option value=''>Select Cohort Type</option>"+
-                            "<option value='art' >ACA</option>" +
-                            "<option value='pmtct' >MCA</option>" +
-                            "<option value='stf' >STF</option>" +
-                            "<option value='defaulter' >NEW AND DEFAULTER</option>";
-                    break;
-            }
-            out.print(data);
+
+            out.println(data);
         }
     }
 

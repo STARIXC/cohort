@@ -5,7 +5,6 @@
  */
 package com.cohorts;
 
-import data.loadcohort;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HSDSA
  */
-public class getCohort24Months extends HttpServlet {
+public class cohortyr extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,26 +32,35 @@ public class getCohort24Months extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-             String data = "";
-            Calendar cl = Calendar.getInstance();
+            String data = "";
+            Calendar cal = Calendar.getInstance();
+            int curyear = cal.get(Calendar.YEAR);
+            int curmn = cal.get(Calendar.MONTH) + 1;
+            int yr;
 
-            String year = "" + (cl.get(Calendar.YEAR));
-            String monthstring = "" + (cl.get(Calendar.MONTH) + 1);
-            String cohorttype = "art";
-            if (request.getParameter("ct") != null && !request.getParameter("ct").equals("")) {
-                cohorttype = request.getParameter("ct");
+            if (curmn >= 10) {
+                curyear = curyear + 1;
             }
-            if (request.getParameter("yr") != null && !request.getParameter("yr").equals("")) {
-                year = request.getParameter("yr");
-            }
-            if (request.getParameter("mn") != null && !request.getParameter("mn").equals("") && !request.getParameter("mn").equals("Select Month")) {
-                monthstring = request.getParameter("mn");
-            }
-            loadcohort lc = new loadcohort();
 
-                    data = "<input type='text' readonly data-cohortmonth='36m' onclick(loadcohorts();hiddenelements();isdisplayindicators();) value='24m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -24) +")'/>";
-            
+            for (int a = 2017; a <= curyear; a++) {
+
+                if (request.getParameter("ry") != null) {
+
+                    if (new Integer(request.getParameter("ry")) == a) {
+                        System.out.println(" Mwaaka ni " + request.getParameter("ry") + " vs " + a);
+                        out.println("<option selected value='" + a + "'>" + a + "</option>");
+                    } else {
+                        out.println("<option value='" + a + "'>" + a + "</option>");
+                    }
+
+                } else {
+
+                    out.println("<option value='" + a + "'>" + a + "</option>");
+
+                }
+
+            }
+
             out.println(data);
         }
     }

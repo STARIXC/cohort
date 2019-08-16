@@ -32,6 +32,18 @@
         <servlet-name>getCohortTypes</servlet-name>
         <servlet-class>com.cohorts.getCohortTypes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>cohortyr</servlet-name>
+        <servlet-class>com.cohorts.cohortyr</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>mnthselected</servlet-name>
+        <servlet-class>com.cohorts.mnthselected</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>selectedfacility</servlet-name>
+        <servlet-class>com.cohorts.selectedfacility</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loadfacility</servlet-name>
         <url-pattern>/loadfacility</url-pattern>
@@ -159,6 +171,18 @@
     <servlet-mapping>
         <servlet-name>getCohortTypes</servlet-name>
         <url-pattern>/getCohortTypes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cohortyr</servlet-name>
+        <url-pattern>/cohortyr</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mnthselected</servlet-name>
+        <url-pattern>/mnthselected</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>selectedfacility</servlet-name>
+        <url-pattern>/selectedfacility</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,26 +1,73 @@
 
-/**
- * Comment
- */
-function updatecohorttypes(){
-    console.log("am here");
- var ct=$("#cohortttypemain").val();
- //alert("running"+selectedct);
+   function loadctype() {
+      var ct=$('#cohortttypemain').val();
+       $.ajax({
+        url: 'getCohortTypes?ct='+ct,
+        type: 'GET',
+        success: function (data)
+        {
+            $("#cohorttype").html(data);
+            getFacilitiesJson();
+     
+        },
+        error: function (error) {
+            //$("#cohorttype").html(error);
+            console.log(error);
+        }
+    });
+    }
+    loadctype();
 
+   function loadry() {
+      var ry=$('#ryear').val();
+       $.ajax({
+        url: 'cohortyr?ry='+ry,
+        type: 'POST',
+        success: function (data)
+        {
+            $("#year").html(data);
+     
+        },
+        error: function (error) {
+            //$("#cohorttype").html(error);
+            console.log(error);
+        }
+    });
+    }
+    loadry();
+   function loadmn() {
+      var mn=$('#montht').val();
+       $.ajax({
+        url: 'mnthselected?mn='+mn,
+        type: 'POST',
+        success: function (data)
+        {
+            $("#month").html(data);
+     
+        },
+        error: function (error) {
+            //$("#cohorttype").html(error);
+            console.log(error);
+        }
+    });
+    }
+    loadmn();
+function updatefacility(){
+
+    //var ct = $("#cohorttype").val();
+    var sf=$("#facilitynamet").val();
     $.ajax({
-        url: 'getCohortTypes?ct=' + ct,
+        url: 'selectedfacility?sf=' + sf,
         type: 'post',
         dataType: 'html',
         success: function (data) {
+            $("#facilityname").html(data);
+            $(document).ready(function () {
 
-            $("select#cohorttype-3").html(data);
-        }
-    });
- 
- }
- function updateyear() {
-    
+                $('#facilityname').select2();
+            });
+        }});
+
 }
-function updatemonth(){}
-function updatefacility(){}
+updatefacility();
 
