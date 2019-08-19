@@ -37,7 +37,7 @@
 
 <body class="bg-light" onload="">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand mr-auto mr-lg-0" href="#">ADHERENCE - STF/New and Defaulter's Cohort Analysis Report  SYSTEM </a>
+        <a class="navbar-brand mr-auto mr-lg-0" href="#">ADHERENCE - Cohort Analysis Report  SYSTEM </a>
         <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -263,7 +263,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                    <select  onfocus='createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();' required="true"  name="cohorttype" id="cohorttype" class="form-control" >
+                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();' required="true"  name="cohorttype" id="cohorttype" class="form-control" >
 
                                                     </select>
                                                 </div>
@@ -272,7 +272,7 @@
 
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                    <select required="true" onclick="loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
+                                                    <select required="true" onchange="loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
                                                         <option value=''>Select Year</option>
 
 
@@ -293,7 +293,7 @@
 
                                                 <div class="form-group">
                                                     <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
-                                                    <Input type="text" readonly onchange="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth-3" class="form-control" data-cohortmonth='3m'value='3m' >
+                                                    <Input type="text" readonly onload="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth" class="form-control" data-cohortmonth='3m'value='3m' >
 
 
 
@@ -304,7 +304,7 @@
 
                                                 <div class="form-group">
                                                     <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                    <select required="true"  onchange="loadcohorts();isdisplayindicators();"   name="facilityname" id="facilityname-3" class="form-control" >
+                                                    <select required="true"  onchange="loadcohorts();hiddenelements();isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
                                                         <option>Select Facility Name</option>
 
                                                     </select>
@@ -313,7 +313,7 @@
                                             </div>
                                         </div>
                                         <div class="text-muted p-3 border border-gray">
-                                            <table class='table table-striped table-bordered' onload="loadcohorts();hiddenelements();isdisplayindicators();" id="dynamicindicators-3m" style="display:none;" > 
+                                            <table class='table table-striped table-bordered' id="dynamicindicators" style="display:none;" > 
 
                                                 <!------INDICATORS----->
                                                 <tr ><td class='col-xs-12' colspan='3'>

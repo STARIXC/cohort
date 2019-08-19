@@ -54,16 +54,15 @@
     loadmn();
 function updatefacility(){
 
-    //var ct = $("#cohorttype").val();
+    var ct = $("#cohorttypemain").val();
     var sf=$("#facilitynamet").val();
     $.ajax({
-        url: 'selectedfacility?sf=' + sf,
+        url: 'selectedfacility?sf=' + sf+'ct='+ct,
         type: 'post',
         dataType: 'html',
         success: function (data) {
             $("#facilityname").html(data);
             $(document).ready(function () {
-
                 $('#facilityname').select2();
             });
         }});
