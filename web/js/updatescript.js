@@ -7,6 +7,7 @@
         success: function (data)
         {
             $("#cohorttype").html(data);
+            $("#cohorttype6").html(data);
             getFacilitiesJson();
      
         },
@@ -26,6 +27,7 @@
         success: function (data)
         {
             $("#year").html(data);
+            $("#year6").html(data);
      
         },
         error: function (error) {
@@ -43,6 +45,7 @@
         success: function (data)
         {
             $("#month").html(data);
+            $("#month6").html(data);
      
         },
         error: function (error) {
@@ -62,8 +65,10 @@ function updatefacility(){
         dataType: 'html',
         success: function (data) {
             $("#facilityname").html(data);
+            $("#facilityname6").html(data);
             $(document).ready(function () {
                 $('#facilityname').select2();
+                $('#facilityname6').select2();
             });
         }});
 

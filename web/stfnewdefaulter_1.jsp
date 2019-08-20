@@ -101,7 +101,7 @@
         <div class="p-3 my-3  bg-white rounded box-shadow">
 
             <div class="lh-100 text-center ">
-                <h5 class="mb-0 text-primary lh-100 ">ADHERENCE - STF/NEW & DEFAULTERS COHORT ANALYSIS SYSTEM [Ver 1.0.1]</h5>
+                <h5 class="mb-0 text-primary lh-100 ">ADHERENCE -COHORT ANALYSIS SYSTEM [Ver 1.0.1]</h5>
 
             </div>
         </div>
@@ -248,110 +248,212 @@
 
                                 </div>
 
-                                <div class=" tab-pane fade" id="nav-3months">
+                                <div class=" tab-pane fade" id="nav-6months">
+                                    <form class="form form-vertical" onsubmit="return validatedata();" action="#" method="post" id="3m">
+                                        <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
+                                        <div class="text-muted pl-3 pt-3 bg-light">
+                                            <center>
+                                                <div id="loading" class="alert-success"></div>
+                                            </center>
 
-                                    <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
-                                    <div class="text-muted pl-3 pt-3 bg-light">
-                                        <center>
-                                            <div id="loading" class="alert-success"></div>
-                                        </center>
 
 
+                                            <div class="row offset-0 p-2">
 
-                                        <div class="row offset-0 p-2">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Cohort Type </label>
+                                                        <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();' required="true"  name="cohorttype" id="cohorttype" class="form-control" >
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();' required="true"  name="cohorttype" id="cohorttype" class="form-control" >
-
-                                                    </select>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
+                                                <div class="col-md-6">
 
-                                                <div class="form-group">
-                                                    <label><font color="red"><b>*</b></font> Reporting year </label> 
-                                                    <select required="true" onchange="loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
-                                                        <option value=''>Select Year</option>
-
-
-                                                    </select>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label><font color="red"><b>*</b></font> Reporting Month </label>
-                                                    <select required="true"    name="month" id="month" onchange="isdisplayindicators();" class="form-control" >
-                                                       
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
-                                                    <Input type="text" readonly onload="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth" class="form-control" data-cohortmonth='3m'value='3m' >
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Reporting year </label> 
+                                                        <select required="true" onchange="loadcohorts();isdisplayindicators();"   name="year" id="year" class="form-control" >
+                                                            <option value=''>Select Year</option>
 
 
+                                                        </select>
+                                                    </div>
 
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Reporting Month </label>
+                                                        <select required="true"    name="month" id="month" onchange="isdisplayindicators();" class="form-control" >
 
-                                            </div>
-                                            <div class="col-md-12">
 
-                                                <div class="form-group">
-                                                    <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                    <select required="true"  onchange="loadcohorts();hiddenelements();isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
-                                                        <option>Select Facility Name</option>
-
-                                                    </select>
+                                                        </select>
+                                                    </div>
                                                 </div>
+                                                <div class="col-md-6">
 
+                                                    <div class="form-group">
+                                                        <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
+                                                        <Input type="text" readonly onload="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth" class="form-control" data-cohortmonth='3m'value='3m' >
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <div class="form-group">
+                                                        <label> <font color="red"><b>*</b></font>  Facility Name:</label>
+                                                        <select required="true"  onchange="loadcohorts();hiddenelements();isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
+                                                            <option>Select Facility Name</option>
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
                                             </div>
+                                            <div class="text-muted p-3 border border-gray">
+                                                <table class='table table-striped table-bordered' id="dynamicindicators" style="display:none;" > 
+
+                                                    <!------INDICATORS----->
+                                                    <tr >
+                                                        <td class='col-xs-12' colspan='3'>
+                                                            <div class='control-group'>
+                                                            </div>
+                                                        </td>
+                                                    </tr>                                 
+
+
+                                                </table>
+                                                <table class="table table-striped table-bordered">
+                                                    <tr><td colspan="3" class="col-xs-12">               
+                                                            <div class="control-group col-xs-12">
+                                                                <div class="alert-info">Note: Please enter all the required data.</div>
+                                                                <br/>
+                                                                <div class="controls">
+                                                                    <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
+
+                                                                </div>
+                                                                <div class="controls">
+                                                                    <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
+                                                                        UPDATE 
+                                                                    </button>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </td></tr>
+
+                                                </table>
+                                            </div>                
+
                                         </div>
-                                        <div class="text-muted p-3 border border-gray">
-                                            <table class='table table-striped table-bordered' id="dynamicindicators" style="display:none;" > 
-
-                                                <!------INDICATORS----->
-                                                <tr ><td class='col-xs-12' colspan='3'>
-                                                        <div class='control-group'>
-
-
-
-
-
-                                                        </div></td>
-                                                </tr>                                 
+                                    </form>
+                                </div>
+                                <div class=" tab-pane fade" id="nav-3months">
+                                    <form class="form form-vertical" onsubmit="return validatedata();" action="#" method="post" id="6m">
+                                        <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">6 Months Records</h6>
+                                        <div class="text-muted pl-3 pt-3 bg-light">
+                                            <center>
+                                                <div id="loading" class="alert-success"></div>
+                                            </center>
 
 
-                                            </table>
-                                            <table class="table table-striped table-bordered">
-                                                <tr><td colspan="3" class="col-xs-12">               
-                                                        <div class="control-group col-xs-12">
-                                                            <div class="alert-info">Note: Please enter all the required data.</div>
-                                                            <br/>
-                                                            <div class="controls">
-                                                                <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
+
+                                            <div class="row offset-0 p-2">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Cohort Type </label>
+                                                        <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();' required="true"  name="cohorttype" id="cohorttype6" class="form-control" >
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Reporting year </label> 
+                                                        <select required="true" onchange="loadcohorts();isdisplayindicators();"   name="year" id="year6" class="form-control" >
+                                                            <option value=''>Select Year</option>
+
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red"><b>*</b></font> Reporting Month </label>
+                                                        <select required="true"    name="month" id="month6" onchange="isdisplayindicators();" class="form-control" >
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
+                                                        <Input type="text" readonly onload="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth6" class="form-control" data-cohortmonth='6m'value='6m' >
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <div class="form-group">
+                                                        <label> <font color="red"><b>*</b></font>  Facility Name:</label>
+                                                        <select required="true"  onchange="loadcohorts();hiddenelements();"   name="facilityname" id="facilityname6" class="form-control" >
+                                                            <option>Select Facility Name</option>
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="text-muted p-3 border border-gray">
+                                                <table class='table table-striped table-bordered' id="dynamicindicators6" style="display:none;" > 
+
+                                                    <!------INDICATORS----->
+                                                    <tr ><td class='col-xs-12' colspan='3'>
+                                                            <div class='control-group'>
+
+
+
+
+
+                                                            </div></td>
+                                                    </tr>                                 
+
+
+                                                </table>
+                                                <table class="table table-striped table-bordered">
+                                                    <tr><td colspan="3" class="col-xs-12">               
+                                                            <div class="control-group col-xs-12">
+                                                                <div class="alert-info">Note: Please enter all the required data.</div>
+                                                                <br/>
+                                                                <div class="controls">
+                                                                    <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
+
+                                                                </div>
+                                                                <div class="controls">
+                                                                    <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
+                                                                        UPDATE 
+                                                                    </button>
+                                                                </div>
+
 
                                                             </div>
-                                                            <div class="controls">
-                                                                <button type="submit" id='updatebutton' onclick="updateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-info active">
-                                                                    UPDATE 
-                                                                </button>
-                                                            </div>
+                                                        </td></tr>
 
+                                                </table>
+                                            </div>                
 
-                                                        </div>
-                                                    </td></tr>
-
-                                            </table>
-                                        </div>                
-
-                                    </div>
-
+                                        </div>
+                                    </form>
                                 </div>
 
 

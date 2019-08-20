@@ -39,66 +39,7 @@ function sumofindicators(sourceindicators, destinationindicator) {
 }
 
 
-
-
-//prepare form data
-
-//===================================================INSERT WEEKLY DATA===================================
-
-var facility = null;
-
-var month = null;
-var year = null;
-
-var enrolled_cohort_kp = null;
-var enrolled_cohort_np = null;
-var enrolled_cohort_total = null;
-var transfers_in_kp = null;
-var transfers_in_np = null;
-var transfers_in_total = null;
-var transfers_out_kp = null;
-var transfers_out_np = null;
-var transfers_out_total = null;
-var netcohort_kp = null;
-var netcohort_np = null;
-var netcohort_total = null;
-var defaulters_kp = null;
-var defaulters_np = null;
-var defaulters_total = null;
-var ltfu_kp = null;
-var ltfu_np = null;
-var ltfu_total = null;
-var reported_dead_kp = null;
-var reported_dead_np = null;
-var reported_dead_total = null;
-var stopped_kp = null;
-var stopped_np = null;
-var stopped_total = null;
-var alive_active_treat_kp = null;
-var alive_active_treat_np = null;
-var alive_active_treat_total = null;
-var viralload_kp = null;
-var viralload_np = null;
-var viralload_total = null;
-var suppressed_kp = null;
-var suppressed_np = null;
-var suppressed_total = null;
-var retained_kp = null;
-var retained_np = null;
-var retained_total = null;
-var cohort = null;
-var facility = null;
-var year = null;
-var month = null;
-var cohort = null;
-
-//added 201605 
-var progressbarstoskip = [];
 var allindicatorsarray = [];
-var allcommentsarray = [];
-var allprogressbar_hiddentext_array = [];
-
-
 
 function createdynamicinputs() {
     $(document).ready(function () {
@@ -186,6 +127,7 @@ function createdynamicinputs() {
 
             //alert(row2);
             $("#dynamicindicators").html(row2);
+            $("#dynamicindicators6").html(row2);
 
             // alert(result[0].IndicatorName);
         }); // ned of input field loading
@@ -757,8 +699,10 @@ function isdisplayindicators() {
             ) {
         // display facility name
         $("#dynamicindicators").show();
+        $("#dynamicindicators6").show();
     } else {
         $("#dynamicindicators").hide();
+        $("#dynamicindicators6").hide();
 
         //
     }
@@ -1033,6 +977,9 @@ function delayedrefresh()
     //clearweeklyfields();
 }
 
-
+function ClientCCC(){
+    
+    $("#submittername").text("testing");
+}
 
 
