@@ -248,7 +248,7 @@
 
                                 </div>
 
-                                <div class=" tab-pane fade" id="nav-6months">
+                                <div class=" tab-pane fade" id="nav-3months">
                                     <form class="form form-vertical" onsubmit="return validatedata();" action="#" method="post" id="3m">
                                         <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">3 Months Records</h6>
                                         <div class="text-muted pl-3 pt-3 bg-light">
@@ -350,7 +350,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class=" tab-pane fade" id="nav-3months">
+                                <div class=" tab-pane fade" id="nav-6months">
                                     <form class="form form-vertical" onsubmit="return validatedata();" action="#" method="post" id="6m">
                                         <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">6 Months Records</h6>
                                         <div class="text-muted pl-3 pt-3 bg-light">
