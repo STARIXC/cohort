@@ -43,11 +43,11 @@ public class cohortyr extends HttpServlet {
             }
 
             for (int a = 2017; a <= curyear; a++) {
+                           String ry=request.getParameter("ry");
+                if (ry != null && !ry.isEmpty()) {
 
-                if (request.getParameter("ry") != null) {
-
-                    if (new Integer(request.getParameter("ry")) == a) {
-                        System.out.println(" Mwaaka ni " + request.getParameter("ry") + " vs " + a);
+                    if (new Integer(ry) == a) {
+                        System.out.println(" Mwaaka ni " + ry + " vs " + a);
                         out.println("<option selected value='" + a + "'>" + a + "</option>");
                     } else {
                         out.println("<option value='" + a + "'>" + a + "</option>");

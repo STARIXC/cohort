@@ -62,7 +62,7 @@ public class getCohortTypes extends HttpServlet {
                 data = "<option  value=''>Select Cohort Type</option>"
                         + "<option  value='art'>ACA</option>"
                         + "<option value='pmtct'>MCA</option>"
-                        + "<option  selected value='stf'>STF</option>"
+                        + "<option   value='stf'>STF</option>"
                         + "<option value='defaulter'>NEW AND DEFAULTER</option>";
 
             }
