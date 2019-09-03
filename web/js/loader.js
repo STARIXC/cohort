@@ -1,4 +1,44 @@
 
+
+$("#save-3months").click(function () {
+        validatedata();
+        save3months();
+             
+});
+function save3months(){
+       var cohorttype = $('#cohorttype').val();
+                var year = $('#year').val();
+                var month = $('#month').val();
+                var cohortmonth = $('#cohortmonth').val();
+                var facilityname = $('#facilityname').val();
+               //create varaibles that will be send in a url String to savedata servlet
+                var dataString = "cohorttype=" + cohorttype +
+                        "&year=" + year+
+                        "&month=" + month +
+                        "&cohortmonth=" + cohortmonth +
+                        "&facilityname=" + facilityname;
+               
+                           
+                
+               // navigator.serviceWorker.controller.postMessage(msg);
+                $.ajax({
+                    type: 'POST',
+                    url: "./multisave",
+                    data: dataString,
+                    success: function (result)
+                    {
+                      /**  setTimeout(function () {
+                            $('#loading').html(result);
+                            $('#form_data')[0].reset();
+                        }, 2000);**/
+                        // $('#form_data')[0].reset();
+                       alert("Data Saved Successfully");
+                    },
+                    error: function () {
+                        alert('Sorry !This didn\'t work . Please Contact the Admin');
+                    }
+                });
+}
 function numbers(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -918,7 +958,7 @@ function validatedata() {
     var vltl = $("#10_tl").val();
     var vlsup = $("#11_tl").val();
 
-    var ct = $("#cohortttype").val();
+    var ct = $("#cohorttype").val();
     if (valtl.indexOf("-") >= 0) {
         alert(
                 "Ensure that  Defaulters + LTFU + Dead + Stopped + Alive and Active = Total Net Cohort"

@@ -42,7 +42,7 @@ String error;
            
            dbConn conn = new dbConn();
         
-        ct=request.getParameter("cohortttype");
+        ct=request.getParameter("cohorttype");
         yr=request.getParameter("year");
         mn=request.getParameter("month");
         cohortmonths=request.getParameter("cohortmonth");
@@ -51,15 +51,17 @@ String error;
         mflcode=facil.split("_")[0];
         }
         
-       session.setAttribute("ct", ct);
-       session.setAttribute("mn", mn);
-       session.setAttribute("yr", yr);
-       session.setAttribute("facil", facil);
-       System.out.println("mflcode is:"+mflcode);
+       //session.setAttribute("ct", ct);
+       //session.setAttribute("mn", mn);
+       //session.setAttribute("yr", yr);
+       //session.setAttribute("facil", facil);
+       System.out.println("mflcode is:"+mflcode+ct+yr+facil);
         
       
         if(ct.equalsIgnoreCase("art")){tablename="art_cohort";} 
         else if(ct.equalsIgnoreCase("pmtct")){tablename="pmtct_cohort";}
+        else if(ct.equalsIgnoreCase("stf")){tablename="stf_cohort";}
+        else if(ct.equalsIgnoreCase("defaulter")){tablename="new_defaulter_cohort";}
         else {tablename="";}
         
    
@@ -81,23 +83,24 @@ String error;
    //String pmtctparameters[]={"1_kp","1_np","1_tl","2_kp","2_np","2_tl","3_kp","3_np","3_tl","4_kp","4_np","4_tl","5_kp","5_np","5_tl","6_kp","6_np","6_tl","7_kp","7_np","7_tl","8_kp","8_np","8_tl","9_kp","9_np","9_tl","10_kp","10_np","10_tl","11_kp","11_np","11_tl","12_kp","12_np","12_tl"};
    
     //note art indicators start from 13 to 23
-     String artparameters[]={"1_adult","1_child","1_tl","2_adult","2_child","2_tl",
-         "3_adult","3_child","3_tl","4_adult","4_child","4_tl","5_adult","5_child","5_tl",
-         "6_adult","6_child","6_tl","7_adult","7_child","7_tl","8_adult","8_child","8_tl","9_adult",
-         "9_child","9_tl","10_adult","10_child","10_tl","11_adult","11_child","11_tl"};
-     String artparameters2[]={"13_adult","13_child","13_tl","14_adult","14_child","14_tl","15_adult","15_child","15_tl","16_adult","16_child","16_tl","17_adult","17_child","17_tl","18_adult","18_child","18_tl","19_adult","19_child","19_tl","20_adult","20_child","20_tl","21_adult","21_child","21_tl","22_adult","22_child","22_tl","23_adult","23_child","23_tl"};
+   String artparameters[]={"1_adult","1_child","1_tl","2_adult","2_child","2_tl","3_adult","3_child","3_tl","4_adult","4_child","4_tl","5_adult","5_child","5_tl","6_adult","6_child","6_tl","7_adult","7_child","7_tl","8_adult","8_child","8_tl","9_adult","9_child","9_tl","10_adult","10_child","10_tl","11_adult","11_child","11_tl"};
+   String artparameters2[]={"13_adult","13_child","13_tl","14_adult","14_child","14_tl","15_adult","15_child","15_tl","16_adult","16_child","16_tl","17_adult","17_child","17_tl","18_adult","18_child","18_tl","19_adult","19_child","19_tl","20_adult","20_child","20_tl","21_adult","21_child","21_tl","22_adult","22_child","22_tl","23_adult","23_child","23_tl"};
    String pmtctparameters[]={"1_kp","1_np","1_tl","2_kp","2_np","2_tl","3_kp","3_np","3_tl","4_kp","4_np","4_tl","5_kp","5_np","5_tl","6_kp","6_np","6_tl","7_kp","7_np","7_tl","8_kp","8_np","8_tl","9_kp","9_np","9_tl","10_kp","10_np","10_tl","11_kp","11_np","11_tl"};
-   String defparameters[]={"1_np","1_def","1_tl","2_def","2_np","2_tl","3_def","3_np","3_tl","4_def","4_np","4_tl","5_def","5_np","5_tl","6_def","6_np","6_tl","7_def","7_np","7_tl","8_def","8_np","8_tl","9_def","9_np","9_tl","10_def","10_np","10_tl","11_def","11_np","11_tl","12_def","12_np","12_tl"};
-   
-ArrayList artvals=new ArrayList();
+   String defparameters[]={"1_np","1_def","1_tl","2_np","2_def","2_tl","3_np","3_def","3_tl","4_np","4_def","4_tl","5_np","5_def","5_tl","6_np","6_def","6_tl","7_np","7_def","7_tl","8_np","8_def","8_tl","9_np","9_def","9_tl","10_np","10_def","10_tl","11_np","11_def","11_tl"};
+   String stfparameters[]={"1_child","1_adult","1_ayp","1_tl","2_child","2_adult","2_ayp","2_tl","3_child","3_adult","3_ayp","3_tl","4_child","4_adult","4_ayp","4_tl","5_child","5_adult","5_ayp","5_tl","6_child","6_adult","6_ayp","6_tl","7_child","7_adult","7_ayp","7_tl","1_child","8_adult","8_ayp","8_tl","9_child","9_adult","9_ayp","9_tl","10_child","10_adult","10_ayp","10_tl","11_child","11_adult","11_ayp","11_tl"};
+
+   ArrayList artvals=new ArrayList();
 ArrayList pmtctvals=new ArrayList();
+ArrayList stfvals=new ArrayList();
+ArrayList defaultervals=new ArrayList();
+
 if(tablename.equals("art_cohort")){
 for(int a=0;a<artparameters.length;a++){
   String val="0";
-  if( !request.getParameter(artparameters[a]).equals("")){
-      val=request.getParameter(artparameters[a]);
-      
-  }
+  if( !request.getParameter(artparameters[a]).equals(""))
+        {
+             val=request.getParameter(artparameters[a]);
+        }
   else {
       val="0";
   }
@@ -123,6 +126,48 @@ pmtctvals.add(val);
 
 //further processing here
 insertorUpdateData(val,tablename,pmtctparameters[a].split("_")[1]+"_"+cohortmonths,conn, yr, mn, mflcode,pmtctparameters[a].split("_")[0]);
+
+}
+    
+    
+}
+else if(tablename.equals("stf_cohort")) {
+
+    
+    for(int a=0;a<stfparameters.length;a++){
+  String val="0";
+  if( !request.getParameter(stfparameters[a]).equals("")){
+      val=request.getParameter(stfparameters[a]);
+      
+  }
+  else {
+      val="0";
+  }
+stfvals.add(val);
+
+//further processing here
+insertorUpdateData(val,tablename,stfparameters[a].split("_")[1]+"_"+cohortmonths,conn, yr, mn, mflcode,stfparameters[a].split("_")[0]);
+
+}
+    
+    
+}
+else if(tablename.equals("new_defaulter_cohort")) {
+
+    
+    for(int a=0;a<defparameters.length;a++){
+  String val="0";
+  if( !request.getParameter(defparameters[a]).equals("")){
+      val=request.getParameter(defparameters[a]);
+      
+  }
+  else {
+      val="0";
+  }
+defaultervals.add(val);
+
+//further processing here
+insertorUpdateData(val,tablename,defparameters[a].split("_")[1]+"_"+cohortmonths,conn, yr, mn, mflcode,defparameters[a].split("_")[0]);
 
 }
     
@@ -227,7 +272,8 @@ System.out.println("error : "+error);
             conn.pst1.setString(5,reportingmonth);
             conn.pst1.setString(6,yearmonth);
             if(conn.pst1.executeUpdate()==1){
-                error="success";
+                
+                error="success Updateqr";
             }
         }
         else {
@@ -243,7 +289,7 @@ System.out.println("error : "+error);
             conn.pst1.setString(7,yearmonth);
             
             if(conn.pst1.executeUpdate()==1){
-                error="success";
+                error="success Insertqr";
             }
             else {
                 
@@ -258,7 +304,7 @@ System.out.println("error : "+error);
                 conn.pst1.setString(6,yearmonth);
                 
                 if(conn.pst2.executeUpdate()==1){
-                    error="success";
+                    error="success updateqr";
                 }
                 
             }

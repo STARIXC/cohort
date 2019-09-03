@@ -48,7 +48,7 @@ public class getCohortMonths extends HttpServlet {
                    + "<li class='nav-item btn btn-primary p-0  mr-1 mb-1'  data-cohortmonth='12m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-12months'><span class='hidden_id' data-mn='12m' >12m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -12) +")</span></a></li>"
                    + "<li class='nav-item btn btn-primary p-0 mr-1 mb-1'  data-cohortmonth='24m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-24months'><span class='hidden_id' data-mn='24m' >24m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -24) +")</span></a></li>";
             if (cohorttype.equalsIgnoreCase("art")) {
-           // data += "<li class='nav-item btn btn-primary p-0 mr-1 mb-1' data-cohortmonth='36m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-36months'   data-mn='36m' ><span class='hidden_id' data-mn='36m' '>36m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -36) +")</span></a></li>";
+           data += "<li class='nav-item btn btn-primary p-0 mr-1 mb-1' data-cohortmonth='36m'><a class='nav-link' onclick(loadcohorts();hiddenelements();isdisplayindicators();) data-toggle='tab' data-target='#nav-36months'   data-mn='36m' ><span class='hidden_id' data-mn='36m' '>36m. Cohort (" + lc.getpreviousmonth(new Integer(year), new Integer(monthstring), -36) +")</span></a></li>";
             }
 
             out.println(data);

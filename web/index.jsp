@@ -139,7 +139,7 @@
                                     <div class="text-muted pl-5 pt-3 bg-light">
                                         <div class="row offset-0 p-2">
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Cohort Type </label>
                                                     <select  required="true"  onchange="loadctype();cohortmonths();createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();"name="cohortttypemain" id="cohortttypemain" class="form-control" >
@@ -202,7 +202,7 @@
                                                           </select>
                                                       </div>
   
-                                                  </div>-->
+                                                  </div>
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
@@ -213,7 +213,7 @@
                                                     </select>
                                                 </div>
 
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <hr>
                                         <div class="  row offset-0 p-2">
@@ -255,15 +255,15 @@
                                         <center>
                                             <div id="loading" class="alert-success"></div>
                                         </center>
-
-
+                                        <form class="form form-vertical" onsubmit="return validatedata();" action="multisave" method="post" id="weeklydataform">
+                                            
 
                                         <div class="row offset-0 p-2">
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><font color="red"><b>*</b></font> Cohort Type </label>
-                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();' required="true"  name="cohorttype" id="cohorttype" class="form-control" >
+                                                    <select  onchange='createdynamicinputs();getFacilitiesJson();' required="true"  name="cohorttype" id="cohorttype" class="form-control" >
 
                                                     </select>
                                                 </div>
@@ -304,7 +304,7 @@
 
                                                 <div class="form-group">
                                                     <label> <font color="red"><b>*</b></font>  Facility Name:</label>
-                                                    <select required="true"  onchange="loadcohorts();hiddenelements();isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
+                                                    <select required="true"  onchange="loadcohorts();createdynamicinputs();getFacilitiesJson();hiddenelements();isdisplayindicators();"   name="facilityname" id="facilityname" class="form-control" >
                                                         <option>Select Facility Name</option>
 
                                                     </select>
@@ -334,7 +334,7 @@
                                                             <div class="alert-info">Note: Please enter all the required data.</div>
                                                             <br/>
                                                             <div class="controls">
-                                                                <input type="submit" onmouseover="validatefacility();"  id='savebutton' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
+                                                                <input type="submit" onmouseover="validatefacility();"  id='save-3months' value="SAVE"  style="margin-left: 0%;" class="btn-lg btn-success active">
 
                                                             </div>
                                                             <div class="controls">
@@ -349,7 +349,7 @@
 
                                             </table>
                                         </div>                
-
+                                    </form>
                                     </div>
 
                                 </div>
