@@ -1,43 +1,43 @@
 
 
 $("#save-3months").click(function () {
-        validatedata();
-        save3months();
-             
+    validatedata();
+    save3months();
+
 });
-function save3months(){
-       var cohorttype = $('#cohorttype').val();
-                var year = $('#year').val();
-                var month = $('#month').val();
-                var cohortmonth = $('#cohortmonth').val();
-                var facilityname = $('#facilityname').val();
-               //create varaibles that will be send in a url String to savedata servlet
-                var dataString = "cohorttype=" + cohorttype +
-                        "&year=" + year+
-                        "&month=" + month +
-                        "&cohortmonth=" + cohortmonth +
-                        "&facilityname=" + facilityname;
-               
-                           
-                
-               // navigator.serviceWorker.controller.postMessage(msg);
-                $.ajax({
-                    type: 'POST',
-                    url: "./multisave",
-                    data: dataString,
-                    success: function (result)
-                    {
-                      /**  setTimeout(function () {
-                            $('#loading').html(result);
-                            $('#form_data')[0].reset();
-                        }, 2000);**/
-                        // $('#form_data')[0].reset();
-                       alert("Data Saved Successfully");
-                    },
-                    error: function () {
-                        alert('Sorry !This didn\'t work . Please Contact the Admin');
-                    }
-                });
+function save3months() {
+    var cohorttype = $('#cohorttype').val();
+    var year = $('#year').val();
+    var month = $('#month').val();
+    var cohortmonth = $('#cohortmonth').val();
+    var facilityname = $('#facilityname').val();
+    //create varaibles that will be send in a url String to savedata servlet
+    var dataString = "cohorttype=" + cohorttype +
+            "&year=" + year +
+            "&month=" + month +
+            "&cohortmonth=" + cohortmonth +
+            "&facilityname=" + facilityname;
+
+
+
+    // navigator.serviceWorker.controller.postMessage(msg);
+    $.ajax({
+        type: 'POST',
+        url: "./multisave",
+        data: dataString,
+        success: function (result)
+        {
+            /**  setTimeout(function () {
+             $('#loading').html(result);
+             $('#form_data')[0].reset();
+             }, 2000);**/
+            // $('#form_data')[0].reset();
+            alert("Data Saved Successfully");
+        },
+        error: function () {
+            alert('Sorry !This didn\'t work . Please Contact the Admin');
+        }
+    });
 }
 function numbers(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
@@ -88,10 +88,10 @@ function createdynamicinputs() {
             var row1 = "";
             var row2 = "";
             var count = 1;
-             var currentcohort = $(".cohorttype")
+            var currentcohort = $(".cohorttype")
                     .val()
                     .toUpperCase();
-         for (a = 0; a < result.length; a++) {
+            for (a = 0; a < result.length; a++) {
                 if (result[a].category === currentcohort) {
                     var indicatorname = result[a].IndicatorName;
                     var indicatorid = result[a].IndicatorID;
@@ -186,9 +186,9 @@ function getFacilitiesJson() {
         dataType: 'html',
         success: function (data) {
             $(".facilitynamet").html(data);
-                   $(document).ready(function () {
+            $(document).ready(function () {
                 $('.facilitynamet').select2();
-                             
+
             });
         }});
 
@@ -233,6 +233,21 @@ function clearfields(indics) {
 
             $("#" + a + "_kp").val("");
             $("#" + a + "_np").val("");
+            $("#" + a + "_tl").val("");
+
+        }
+         if (ct === 'stf') {
+
+            $("#" + a + "_child").val("");
+            $("#" + a + "_adult").val("");
+            $("#" + a + "_ayp").val("");
+            $("#" + a + "_tl").val("");
+
+        }
+         if (ct === 'defaulter') {
+
+            $("#" + a + "_np").val("");
+            $("#" + a + "_def").val("");
             $("#" + a + "_tl").val("");
 
         }
@@ -381,7 +396,8 @@ function hiddenelements() {
         $("#11_adult").val("0");
         $("#11_child").val("0");
         $("#11_tl").val("0");
-    } else if (cm_ === "9m" && ct_ === "stf") {
+    }
+    else if (cm_ === "9m" && ct_ === "stf") {
         $("#10_child").attr("readonly", true);
         $("#10_adult").attr("readonly", true);
         $("#10_ayp").attr("readonly", true);
@@ -415,7 +431,8 @@ function hiddenelements() {
         $("#10_child").val("0");
         $("#11_adult").val("0");
         $("#11_aypt").val("0");
-    } else if (cm_ === "3m" && ct_ === "stf") {
+    }
+    else if (cm_ === "3m" && ct_ === "stf") {
         $("#6_child").attr("readonly", true);
         $("#6_adult").attr("readonly", true);
         $("#6_ayp").attr("readonly", true);
@@ -475,7 +492,8 @@ function hiddenelements() {
         $("#11_child").val("0");
         $("#11_ayp").val("0");
         $("#11_tl").val("0");
-    } else if (cm_ === "9m" && ct_ === "defaulter") {
+    } 
+    else if (cm_ === "9m" && ct_ === "defaulter") {
         $("#10_np").attr("readonly", true);
         $("#10_def").attr("readonly", true);
 
@@ -506,7 +524,8 @@ function hiddenelements() {
         //========
         $("#10_np").val("0");
         $("#11_def").val("0");
-    } else if (cm_ === "3m" && ct_ === "defaulter") {
+    }
+    else if (cm_ === "3m" && ct_ === "defaulter") {
         $("#6_np").attr("readonly", true);
         $("#6_def").attr("readonly", true);
 
@@ -529,6 +548,12 @@ function hiddenelements() {
 
         $("#11_np").attr("tabindex", -1);
         $("#11_def").attr("tabindex", -1);
+        
+        $("#12_np").attr("tabindex", -1);
+        $("#12_def").attr("tabindex", -1);
+        
+        $("#13_np").attr("tabindex", -1);
+        $("#13_def").attr("tabindex", -1);
 
         //$("#6_tl").attr("readonly",true);
 
@@ -578,7 +603,8 @@ function hiddenelements() {
         $("#13_np").val("0");
 
         $("#13_tl").val("0");
-    } else {
+    }
+    else {
         if (ct_ === "pmtct") {
             $("#10_kp").removeAttr("readonly");
             $("#10_np").removeAttr("readonly");
@@ -612,7 +638,9 @@ function hiddenelements() {
             $("#6_kp").attr("required", true);
             $("#6_np").attr("required", true);
             //  $("#6_tl").attr("required",true);
-        } else if (ct_ === "art") {
+        }
+        else if (ct_ === "art") 
+        {
             $("#10_adult").removeAttr("readonly");
             $("#10_child").removeAttr("readonly");
 
@@ -645,7 +673,8 @@ function hiddenelements() {
             $("#6_adult").attr("required", true);
             $("#6_child").attr("required", true);
             //  $("#6_tl").attr("required",true);
-        } else if (ct_ === "stf") {
+        }
+        else if (ct_ === "stf") {
             $("#10_adult").removeAttr("readonly");
             $("#10_child").removeAttr("readonly");
             $("#10_ayp").removeAttr("readonly");
@@ -687,7 +716,8 @@ function hiddenelements() {
             $("#6_child").attr("required", true);
             $("#6_ayp").attr("required", true);
             //  $("#6_tl").attr("required",true);
-        } else {
+        } 
+        else {
             $("#10_np").removeAttr("readonly");
             $("#10_def").removeAttr("readonly");
 
@@ -742,14 +772,14 @@ function isdisplayindicators() {
         //$("#dynamicindicators6").show();
     } else {
         $(".dynamicindicators").hide();
-       // $("#dynamicindicators6").hide();
+        // $("#dynamicindicators6").hide();
 
         //
     }
 }
 //loadCohorts
 function loadcohorts() {
-    
+
     var yr = $(".year").val();
     var mn = $(".month").val();
     var ct = $(".cohortttypemain").val();
@@ -1005,6 +1035,22 @@ $("#nav-home").on("keydown", "input, select, textarea", function (e) {
         return false;
     }
 });
+$("#nav-3months").on("keydown", "input, select, textarea", function (e) {
+    var self = $(this),
+            form = self.parents("form:eq(0)"),
+            focusable,
+            next;
+    if (e.keyCode === 13) {
+        focusable = form.find("input,a,select,button,textarea").filter(":visible");
+        next = focusable.eq(focusable.index(this) + 1);
+        if (next.length) {
+            next.focus();
+        } else {
+            form.submit();
+        }
+        return false;
+    }
+});
 //Codes to prevent default form submission
 
 $("#userform").submit(function (e) {
@@ -1018,8 +1064,8 @@ function delayedrefresh()
     //clearweeklyfields();
 }
 
-function ClientCCC(){
-    
+function ClientCCC() {
+
     $("#submittername").text("testing");
 }
 

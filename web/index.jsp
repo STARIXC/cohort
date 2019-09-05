@@ -396,7 +396,7 @@
 
                                                     <div class="form-group">
                                                         <label> <font color="red"><b>*</b></font>  Cohort Month:</label>
-                                                        <Input type="text" readonly onload="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth" class="form-control cohortmonth" data-cohortmonth='6m'value='6m' >
+                                                        <Input type="text" readonly onload="loadcohorts();isdisplayindicators();"   name="cohortmonth" id="cohortmonth" class="form-control cohortmonth" data-cohortmonth='6m' value='6m' >
 
 
 
